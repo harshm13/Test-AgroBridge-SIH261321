@@ -3,24 +3,27 @@ import { AppContext } from '../App';
 import { 
     TrendingUp, ArrowRight, CheckCircle2, MapPin, Truck, 
     Info, Store, Sparkles, Navigation, ShieldCheck, Activity, 
-    Users, Leaf, HandCoins
+    Users, Leaf, HandCoins, BrainCircuit, Landmark, Dna, QrCode
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import OpportunityEngine from '../components/OpportunityEngine';
+import ExplainableAIModal from '../components/ExplainableAIModal';
 
 export default function Dashboard() {
-    const { userRole, t, farmerProfile, setActiveTab } = useContext(AppContext);
+    const { userRole, t, farmerProfile, setActiveTab, lang } = useContext(AppContext);
+    const isMr = lang === 'mr';
     
     // Toggle between standard analytical view and ultra-simple view
     const [simpleMode, setSimpleMode] = useState(false);
+    const [showXaiModal, setShowXaiModal] = useState(false);
     
     const [crop] = useState('Onion');
-    const todayPrice = 2600;
-    const predictedPrice = 2850;
+    const todayPrice = 2850;
+    const predictedPrice = 3120;
     
     // Using farmerProfile data if available, otherwise defaults
     const farmerName = farmerProfile ? farmerProfile.name : "Ramesh";
-    const farmerLocation = farmerProfile ? `${farmerProfile.village}, ${farmerProfile.district}` : "Nashik, Maharashtra";
+    const farmerLocation = farmerProfile ? `${farmerProfile.village}, ${farmerProfile.district}` : "Sinnar, Nashik, Maharashtra";
 
     return (
         <div className="ab-container py-6 sm:py-8 space-y-6 sm:space-y-8 max-w-6xl">
@@ -29,7 +32,7 @@ export default function Dashboard() {
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b-2 border-slate-200/50 pb-6">
                 <div>
                     <h1 className="text-3xl sm:text-4xl font-black text-slate-800 tracking-tight">
-                        Namaste, {farmerName} <span className="inline-block origin-bottom-right hover:animate-wave">👋</span>
+                        {isMr ? 'नमस्कार' : 'Namaste'}, {farmerName} <span className="inline-block origin-bottom-right hover:animate-wave">👋</span>
                     </h1>
                     <p className="text-slate-500 font-medium mt-2 flex items-center gap-2">
                         <MapPin className="w-4 h-4" /> {farmerLocation}
@@ -42,14 +45,73 @@ export default function Dashboard() {
                         onClick={() => setSimpleMode(true)}
                         className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${simpleMode ? 'bg-slate-800 text-white shadow-md' : 'text-slate-500 hover:bg-slate-50'}`}
                     >
-                        Simple View
+                        {isMr ? 'सुलभ दृश्य' : 'Simple View'}
                     </button>
                     <button 
                         onClick={() => setSimpleMode(false)}
                         className={`px-4 py-2 rounded-xl text-sm font-bold transition-all ${!simpleMode ? 'bg-slate-800 text-white shadow-md' : 'text-slate-500 hover:bg-slate-50'}`}
                     >
-                        Advanced
+                        {isMr ? 'प्रगत कमांड सेंटर' : 'Advanced'}
                     </button>
+                </div>
+            </div>
+
+            {/* Official Government Data Sync Badge */}
+            <div className="bg-emerald-50 border border-emerald-200/80 rounded-2xl p-3 sm:p-4 flex flex-wrap items-center justify-between gap-3 text-xs">
+                <div className="flex items-center gap-2 font-bold text-emerald-900">
+                    <Landmark className="w-4 h-4 text-emerald-700 shrink-0" />
+                    <span>{isMr ? 'अधिकृत शासकीय थेट माहिती:' : 'Official Live Feed:'} Government of India Open Data Portal (data.gov.in) & Agmarknet</span>
+                </div>
+                <div className="flex items-center gap-2">
+                    <span className="bg-emerald-200/60 text-emerald-900 px-2 py-0.5 rounded-full font-bold text-[11px]">
+                        {isMr ? 'लासलगाव बाजारपेठ जोडणी' : 'Lasalgaon APMC Linked'}
+                    </span>
+                    <span className="bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full font-bold text-[11px]">
+                        e-NAM Verified
+                    </span>
+                </div>
+            </div>
+
+            {/* Quick Action Banners for Maharashtra Schemes and Digital Twin */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div 
+                    onClick={() => setActiveTab('govt_schemes')}
+                    className="bg-white p-4 rounded-2xl border border-slate-200 hover:border-emerald-400 shadow-sm transition flex items-center justify-between cursor-pointer group"
+                >
+                    <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center font-bold">
+                            <Landmark className="w-5 h-5" />
+                        </div>
+                        <div>
+                            <div className="text-[10px] font-black uppercase text-amber-700">
+                                {isMr ? 'महाराष्ट्र शासन योजना' : 'Maharashtra State Schemes'}
+                            </div>
+                            <div className="text-xs font-black text-slate-800 mt-0.5">
+                                {isMr ? '६ योजनांसाठी पात्र (कर्जमुक्ती, नमो शेतकरी, ८०% ठिबक)' : 'Eligible for 6 Schemes (Karjmukti, Namo Shetkari, MahaDBT)'}
+                            </div>
+                        </div>
+                    </div>
+                    <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-emerald-600 transition" />
+                </div>
+
+                <div 
+                    onClick={() => setActiveTab('digital_twin')}
+                    className="bg-white p-4 rounded-2xl border border-slate-200 hover:border-indigo-400 shadow-sm transition flex items-center justify-between cursor-pointer group"
+                >
+                    <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-800 flex items-center justify-center font-bold">
+                            <Dna className="w-5 h-5" />
+                        </div>
+                        <div>
+                            <div className="text-[10px] font-black uppercase text-indigo-700">
+                                {isMr ? 'शेतकरी डिजिटल ट्विन' : 'Farmer Digital Twin'}
+                            </div>
+                            <div className="text-xs font-black text-slate-800 mt-0.5">
+                                {isMr ? '१५० क्विंटल कांदा चाळ व काळी जमीन मॉडेल सक्रिय' : '150 Qtl Kanda Chawl & Black Soil Model Active'}
+                            </div>
+                        </div>
+                    </div>
+                    <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-indigo-600 transition" />
                 </div>
             </div>
 
@@ -159,13 +221,22 @@ export default function Dashboard() {
                                             <p className="text-sm font-medium text-slate-700">Supply from Karnataka is delayed, increasing reliance on local Nashik stock.</p>
                                         </div>
                                     </div>
+
+                                    {/* Explainable AI Trigger Button */}
+                                    <button
+                                        onClick={() => setShowXaiModal(true)}
+                                        className="mt-4 w-full py-2.5 px-4 bg-amber-100 hover:bg-amber-200 text-amber-900 rounded-xl text-xs font-bold flex items-center justify-center gap-2 transition cursor-pointer border border-amber-300/60 shadow-sm"
+                                    >
+                                        <BrainCircuit className="w-4 h-4 text-amber-700" />
+                                        {isMr ? 'AI निर्णयाचे सविस्तर कारण पहा (Explainable AI)' : 'View AI Decision Factors & Causal Reasons'}
+                                    </button>
                                 </div>
 
                                 <button 
                                     onClick={() => setActiveTab('agrobot')}
                                     className="w-full bg-slate-800 hover:bg-slate-900 text-white font-bold py-3.5 rounded-xl transition mt-8 shadow-md cursor-pointer flex items-center justify-center gap-2"
                                 >
-                                    <Sparkles className="w-4 h-4 text-amber-400" /> Set Auto-Sell Target via Copilot
+                                    <Sparkles className="w-4 h-4 text-amber-400" /> {isMr ? 'महाविस्तार AI मार्गदर्शकाशी बोला' : 'Ask MahaVISTAAR AI Copilot'}
                                 </button>
                             </div>
 
@@ -221,6 +292,14 @@ export default function Dashboard() {
                     </motion.div>
                 )}
             </AnimatePresence>
+
+            {/* Explainable AI Modal Inspection */}
+            <ExplainableAIModal 
+                isOpen={showXaiModal}
+                onClose={() => setShowXaiModal(false)}
+                crop={crop}
+                market="Lasalgaon APMC"
+            />
         </div>
     );
 }

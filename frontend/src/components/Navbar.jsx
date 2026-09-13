@@ -3,7 +3,7 @@ import { AppContext } from '../App';
 import { 
     Sprout, UserCircle, Globe, Check, ChevronDown, Bot, Sparkles, 
     ArrowRightLeft, Menu, X, Home, Leaf, TrendingUp, Store, Truck, 
-    ShieldCheck, CreditCard, LifeBuoy 
+    ShieldCheck, CreditCard, LifeBuoy, Landmark, Dna, QrCode, Award 
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -25,13 +25,17 @@ export default function Navbar() {
     // Farmer Navigation Tabs
     const farmerTabs = [
         { id: 'dashboard', label: t.dashboard, icon: Home },
-        { id: 'my_crops', label: t.my_crops, icon: Leaf },
         { id: 'market_data', label: t.market_data, icon: TrendingUp },
+        { id: 'govt_schemes', label: t.govt_schemes || 'Govt Schemes', icon: Landmark },
+        { id: 'digital_twin', label: t.digital_twin || 'Digital Twin', icon: Dna },
+        { id: 'traceability', label: t.traceability || 'Farm-to-Fork', icon: QrCode },
+        { id: 'my_crops', label: t.my_crops, icon: Leaf },
         { id: 'marketplace', label: t.find_buyers, icon: Store },
         { id: 'logistics', label: t.logistics, icon: Truck },
         { id: 'quality_check', label: t.quality_check, icon: ShieldCheck },
         { id: 'agrobot', label: t.agrobot, icon: Bot, highlight: true },
         { id: 'transactions', label: t.transactions, icon: CreditCard },
+        { id: 'govt_showcase', label: t.govt_showcase || 'SIH Showcase', icon: Award, highlight: true },
         { id: 'support', label: t.support, icon: LifeBuoy },
     ];
 
@@ -40,10 +44,12 @@ export default function Navbar() {
         { id: 'dashboard', label: 'Buyer Hub', icon: Home },
         { id: 'marketplace', label: 'Browse Produce', icon: Store },
         { id: 'market_data', label: 'Price Trends', icon: TrendingUp },
+        { id: 'traceability', label: 'Farm-to-Fork', icon: QrCode },
         { id: 'logistics', label: 'Transport Share', icon: Truck },
         { id: 'quality_check', label: 'Quality Audit', icon: ShieldCheck },
-        { id: 'agrobot', label: 'AgroBot Assist', icon: Bot, highlight: true },
+        { id: 'agrobot', label: 'MahaVISTAAR AI', icon: Bot, highlight: true },
         { id: 'transactions', label: 'Escrow Ledger', icon: CreditCard },
+        { id: 'govt_showcase', label: 'SIH Showcase', icon: Award },
     ];
 
     const currentTabs = userRole === 'farmer' ? farmerTabs : buyerTabs;

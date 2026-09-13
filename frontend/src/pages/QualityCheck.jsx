@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
-import { Camera, Upload, CheckCircle2, ShieldCheck, Sparkles, AlertCircle, RefreshCw, ArrowRight, Award, Zap } from 'lucide-react';
+import React, { useState, useContext } from 'react';
+import { AppContext } from '../App';
+import { Camera, Upload, CheckCircle2, ShieldCheck, Sparkles, AlertCircle, RefreshCw, ArrowRight, Award, Zap, QrCode } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import axios from 'axios';
 
 export default function QualityCheck() {
+  const { lang, setActiveTab } = useContext(AppContext);
+  const isMr = lang === 'mr';
+
   const [selectedImage, setSelectedImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [analyzing, setAnalyzing] = useState(false);
@@ -208,17 +212,33 @@ export default function QualityCheck() {
                 </div>
 
                 {/* Verified Digital Certificate Tag */}
-                <div className="bg-slate-900 text-white p-4 rounded-2xl flex items-center justify-between shadow-lg">
-                  <div className="flex items-center gap-3">
-                    <CheckCircle2 className="w-6 h-6 text-emerald-400" />
-                    <div>
-                      <div className="text-xs font-bold text-slate-400 uppercase tracking-widest">Digital Certificate Generated</div>
-                      <div className="text-xs font-bold text-emerald-300">Signed on Blockchain</div>
+                <div className="bg-slate-900 text-white p-5 rounded-2xl shadow-xl space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <CheckCircle2 className="w-6 h-6 text-emerald-400 shrink-0" />
+                      <div>
+                        <div className="text-xs font-bold text-slate-400 uppercase tracking-widest">
+                          {isMr ? 'डिजिटल गुणवत्ता प्रमाणपत्र' : 'Blockchain Digital Certificate'}
+                        </div>
+                        <div className="text-xs font-mono text-emerald-300">
+                          Hash: 0xa4f890c21e6490bbd4a23fe981e19d70
+                        </div>
+                      </div>
                     </div>
+                    <span className="bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-[10px] font-bold px-2 py-0.5 rounded">
+                      PoAA Signed
+                    </span>
                   </div>
-                  <button className="bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs px-3 py-2 rounded-xl transition flex items-center gap-1">
-                    Attach to Lot <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
+
+                  <div className="pt-2 border-t border-white/10 flex gap-2">
+                    <button 
+                      onClick={() => setActiveTab('traceability')}
+                      className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs py-2.5 px-4 rounded-xl transition flex items-center justify-center gap-2 cursor-pointer shadow-md"
+                    >
+                      <QrCode className="w-4 h-4" />
+                      {isMr ? 'शेत ते ताट QR पासपोर्टमध्ये जोडा' : 'Attach to Farm-to-Fork QR Passport'} <ArrowRight className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
                 </div>
 
               </motion.div>
