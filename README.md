@@ -252,18 +252,21 @@ decisions.
 
   Module                   Purpose
   ------------------------ ----------------------------------------------
-  🏠 Dashboard             Overview of crops, markets and opportunities
+  🏠 Dashboard             Overview of crops, real government feeds and opportunities
+  📊 Market Intelligence   Explore data.gov.in / Agmarknet live rates & TFT multi-horizon forecasts
+  🏛️ Govt Schemes          Discover & check eligibility for Maharashtra schemes (Karjmukti, Namo Shetkari, MahaDBT)
+  🧬 Digital Twin          Virtual farm simulation (soil chemistry, Kanda Chawl storage, liquidity)
+  📦 Farm-to-Fork          Consumer QR provenance tracking from farm field to retail shelf
   🌾 My Crops              Manage crops and available produce
-  📊 Market Intelligence   Explore prices and market trends
-  🧠 Opportunity Engine    Identify promising selling opportunities
-  🏪 Marketplace           Discover buyers and offers
-  👤 Buyer Profiles        View buyer information and trust indicators
-  🔬 Quality Check         Capture and evaluate crop quality
-  🚚 Logistics             Explore transportation opportunities
-  💳 Transactions          Track sales and payments
-  💬 AI Copilot            Get contextual assistance
+  🧠 Opportunity Engine    Identify promising selling opportunities & fair price
+  🏪 Marketplace           Discover verified buyers and offers
+  🔬 Quality Check         Capture & evaluate crop quality with blockchain certificate hash
+  🚚 Logistics             Hyper-local shared truck pooling saving 40-60% freight
+  💳 Transactions          Blockchain smart contract ledger with 2.1-day automated settlement
+  💬 MahaVISTAAR AI        Contextual agricultural copilot in Marathi, Hindi, and English
+  🏆 SIH & Govt Showcase   Maharashtra Government alignment, roadmap, DPDP Act compliance & live demo presets
   🆘 Support               Access help and grievance assistance
-  👨‍🌾 Profile               Manage farmer information
+  👨‍🌾 Profile               Manage farmer information and landholding
 
 ------------------------------------------------------------------------
 

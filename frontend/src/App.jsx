@@ -12,30 +12,14 @@ import FarmerOnboarding from './pages/FarmerOnboarding';
 import MyCrops from './pages/MyCrops';
 import Transactions from './pages/Transactions';
 import Support from './pages/Support';
+import GovtSchemes from './pages/GovtSchemes';
+import Traceability from './pages/Traceability';
+import DigitalTwin from './pages/DigitalTwin';
+import GovtShowcase from './pages/GovtShowcase';
+import { translations } from './data/translations';
 import { WifiOff, AlertTriangle } from 'lucide-react';
 
 export const AppContext = createContext();
-
-const dict = {
-  en: { 
-    dashboard: 'Dashboard', find_buyers: 'Opportunities', logistics: 'Logistics', 
-    agrobot: 'Copilot', profile: 'Profile', quality_check: 'Quality Check',
-    market_data: 'Market Intel', find_crops: 'Find Crops', logout: 'Logout',
-    my_crops: 'My Crops', transactions: 'Transactions', support: 'Support'
-  },
-  hi: { 
-    dashboard: 'डैशबोर्ड', find_buyers: 'अवसर', logistics: 'लॉजिस्टिक्स', 
-    agrobot: 'को-पायलट', profile: 'प्रोफ़ाइल', quality_check: 'गुणवत्ता जांच',
-    market_data: 'बाज़ार डेटा', find_crops: 'फसल खोजें', logout: 'लॉग आउट',
-    my_crops: 'मेरी फसलें', transactions: 'लेन-देन', support: 'सहायता'
-  },
-  mr: { 
-    dashboard: 'डॅशबोर्ड', find_buyers: 'संधी', logistics: 'लॉजिस्टिक्स', 
-    agrobot: 'को-पायलट', profile: 'प्रोफाइल', quality_check: 'गुणवत्ता तपासणी',
-    market_data: 'बाजार डेटा', find_crops: 'पीक शोधा', logout: 'लॉग आउट',
-    my_crops: 'माझी पिके', transactions: 'व्यवहार', support: 'मदत'
-  }
-};
 
 export default function App() {
   const [userRole, setUserRole] = useState(null); // 'farmer' or 'buyer'
@@ -45,7 +29,7 @@ export default function App() {
   const [onboardingComplete, setOnboardingComplete] = useState(false);
   const [farmerProfile, setFarmerProfile] = useState(null);
 
-  const t = dict[lang];
+  const t = translations[lang] || translations.en;
 
   useEffect(() => {
     const handleOnline = () => setIsOffline(false);
@@ -76,11 +60,15 @@ export default function App() {
       case 'dashboard': return <Dashboard />;
       case 'my_crops': return <MyCrops />;
       case 'market_data': return <MarketIntelligence />;
+      case 'govt_schemes': return <GovtSchemes />;
+      case 'digital_twin': return <DigitalTwin />;
+      case 'traceability': return <Traceability />;
       case 'marketplace': return <Marketplace />;
       case 'logistics': return <Logistics />;
       case 'quality_check': return <QualityCheck />;
       case 'agrobot': return <ChatBox />;
       case 'transactions': return <Transactions />;
+      case 'govt_showcase': return <GovtShowcase />;
       case 'support': return <Support />;
       case 'profile': return <Profile />;
       default: return <Dashboard />;

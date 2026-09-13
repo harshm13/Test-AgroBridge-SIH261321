@@ -26,7 +26,7 @@ export const translations = {
     gov_data_source: 'data.gov.in & Agmarknet Live',
     sell: 'SELL',
     wait: 'WAIT',
-    recommended_action: 'Recommended Action',
+    recommended_action: 'Recommended Action', 
     ai_confidence: 'AI Model Confidence',
     view_details: 'View Details',
     apply_now: 'Apply Now',
