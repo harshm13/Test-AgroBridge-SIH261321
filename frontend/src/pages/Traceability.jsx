@@ -9,6 +9,7 @@ import { motion } from 'framer-motion';
 export default function Traceability() {
   const { lang, t } = useContext(AppContext);
   const isMr = lang === 'mr';
+  const isHi = lang === 'hi';
 
   const [selectedLot, setSelectedLot] = useState('LOT-MH-2026-089');
   const [tipSuccess, setTipSuccess] = useState(false);
@@ -20,6 +21,7 @@ export default function Traceability() {
       qr_code_id: "QR-AGRO-SINNAR-089",
       commodity_en: "Nashik Premium Red Onion (Unhali Special)",
       commodity_mr: "नाशिक प्रीमियम उन्हाळी लाल कांदा",
+      commodity_hi: "नासिक प्रीमियम लाल प्याज (उन्हाली स्पेशल)",
       quantity: "24.0 Quintals (2,400 kg)",
       harvest_date: "11 Sept 2026",
       farmer: {
@@ -33,6 +35,7 @@ export default function Traceability() {
       quality: {
         grade: "Grade A (Premium Export Quality)",
         grade_mr: "ग्रेड A (निर्यात दर्जा)",
+        grade_hi: "ग्रेड A (प्रीमियम निर्यात गुणवत्ता)",
         defect_pct: 2.1,
         bulb_size: "58 mm average",
         moisture: "11.4% (Optimal Curing)",
@@ -52,13 +55,15 @@ export default function Traceability() {
         price_realization: "₹3,120 / Qtl (+18% premium over unverified mandi lots)"
       },
       story_en: "Ramesh Patil has been practicing Good Agricultural Practices (GAP) for nearly two decades. By curing onions under specialized shaded aeration and booking cold-chain pooling through AgroBridge, his harvest delivers maximum pungency and a guaranteed 6-month kitchen shelf life.",
-      story_mr: "रमेश पाटील यांनी सेंद्रिय खतांचा वापर करून आणि सावलीत हवेशीर कांदा वाळवून उत्कृष्ट दर्जा राखला आहे. ॲग्रोब्रिजच्या सामायिक वातानुकूलित वाहनातून हा कांदा केवळ १४ तासांत शेतावरून थेट मुंबईच्या ग्राहकांपर्यंत पोहोचला आहे."
+      story_mr: "रमेश पाटील यांनी सेंद्रिय खतांचा वापर करून आणि सावलीत हवेशीर कांदा वाळवून उत्कृष्ट दर्जा राखला आहे. ॲग्रोब्रिजच्या सामायिक वातानुकूलित वाहनातून हा कांदा केवळ १४ तासांत शेतावरून थेट मुंबईच्या ग्राहकांपर्यंत पोहोचला आहे.",
+      story_hi: "रमेश पाटिल लगभग दो दशकों से उत्तम कृषि पद्धतियां (GAP) अपना रहे हैं। विशेष हवादार भंडारण और एग्रोब्रिज शेयर्ड कोल्ड-चेन वाहन के माध्यम से यह प्याज बिना किसी खराबी के सीधे मुंबई के ग्राहकों तक पहुंचा है।"
     },
     "LOT-MH-2026-112": {
       lot_id: "LOT-MH-2026-112",
       qr_code_id: "QR-AGRO-PUNE-112",
       commodity_en: "Vine-Ripened Hybrid Tomatoes",
       commodity_mr: "ताजे दर्जेदार संकरित टोमॅटो",
+      commodity_hi: "ताजा गुणवत्ता संकरित टमाटर",
       quantity: "40.0 Quintals (4,000 kg)",
       harvest_date: "13 Sept 2026",
       farmer: {
@@ -72,6 +77,7 @@ export default function Traceability() {
       quality: {
         grade: "Grade A (Zero Chemical Rot)",
         grade_mr: "ग्रेड A (डागमुक्त फळे)",
+        grade_hi: "ग्रेड A (दागमुक्त फल)",
         defect_pct: 1.8,
         bulb_size: "62 mm diameter",
         moisture: "92.1%",
@@ -91,7 +97,8 @@ export default function Traceability() {
         price_realization: "₹1,850 / Qtl (+22% premium for sorted Grade A)"
       },
       story_en: "Harvested at 5:30 AM by 32 smallholder farmers working together in Niphad. Pre-graded with AI vision before loading into shared transport.",
-      story_mr: "निफाड तालुक्यातील ३२ अल्पभूधारक शेतकऱ्यांनी एकत्र येऊन पहाटे काढणी केलेला माल. AI तपासणीनंतर दर्जेदार टोमॅटो थेट पुण्याच्या ग्राहकांसाठी."
+      story_mr: "निफाड तालुक्यातील ३२ अल्पभूधारक शेतकऱ्यांनी एकत्र येऊन पहाटे काढणी केलेला माल. AI तपासणीनंतर दर्जेदार टोमॅटो थेट पुण्याच्या ग्राहकांसाठी.",
+      story_hi: "निफाड के 32 छोटे किसानों द्वारा सामूहिक रूप से सुबह 5:30 बजे ताजा तुड़ाई। एआई कंप्यूटर विजन ग्रेडिंग के बाद साझा वाहन द्वारा सीधे पुणे भेजा गया।"
     }
   };
 
@@ -112,11 +119,13 @@ export default function Traceability() {
             <QrCode className="w-3.5 h-3.5" /> Farm-to-Fork Traceability
           </div>
           <h1 className="text-3xl sm:text-4xl font-black text-slate-800 tracking-tight">
-            {isMr ? 'शेत ते ताट (Farm-to-Fork) पारदर्शकता' : 'Farm-to-Fork Consumer Provenance'}
+            {isMr ? 'शेत ते ताट (Farm-to-Fork) पारदर्शकता' : isHi ? 'खेत से थाली (Farm-to-Fork) पारदर्शिता' : 'Farm-to-Fork Consumer Provenance'}
           </h1>
           <p className="text-slate-500 font-medium text-sm mt-1">
             {isMr 
               ? 'ग्राहकांसाठी आणि निर्यातदारांसाठी शेताच्या ७/१२ नोंदीपासून ते किरकोळ दुकानापर्यंतचा डिजिटल प्रवास.'
+              : isHi
+              ? 'उपभोक्ताओं और निर्यातकों के लिए खेत के 7/12 रिकॉर्ड से खुदरा दुकान तक की पारदर्शी डिजिटल यात्रा।'
               : 'End-to-end cryptographic journey connecting conscious consumers with Verified Maharashtra Farmers.'
             }
           </p>
@@ -126,19 +135,19 @@ export default function Traceability() {
         <div className="flex items-center gap-2 bg-white p-1.5 rounded-2xl border border-slate-200 shadow-sm">
           <button 
             onClick={() => setSelectedLot('LOT-MH-2026-089')}
-            className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
+            className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
               selectedLot === 'LOT-MH-2026-089' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:bg-slate-50'
             }`}
           >
-            🧅 {isMr ? 'नाशिक कांदा' : 'Nashik Onion'} (#089)
+            🧅 {isMr ? 'नाशिक कांदा' : isHi ? 'नासिक प्याज' : 'Nashik Onion'} (#089)
           </button>
           <button 
             onClick={() => setSelectedLot('LOT-MH-2026-112')}
-            className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
+            className={`px-3.5 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
               selectedLot === 'LOT-MH-2026-112' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:bg-slate-50'
             }`}
           >
-            🍅 {isMr ? 'निफाड टोमॅटो' : 'Niphad Tomato'} (#112)
+            🍅 {isMr ? 'निफाड टोमॅटो' : isHi ? 'निफाड टमाटर' : 'Niphad Tomato'} (#112)
           </button>
         </div>
       </div>
@@ -199,15 +208,17 @@ export default function Traceability() {
 
             <div className="mt-4 pt-4 border-t border-white/10 text-left space-y-1.5 text-xs">
               <div className="flex justify-between text-slate-300">
-                <span>{isMr ? 'पीक' : 'Produce'}:</span>
-                <span className="font-bold text-white">{isMr ? lot.commodity_mr : lot.commodity_en}</span>
+                <span>{isMr ? 'पीक' : isHi ? 'फसल' : 'Produce'}:</span>
+                <span className="font-bold text-white">
+                  {isMr ? lot.commodity_mr : isHi ? (lot.commodity_hi || lot.commodity_en) : lot.commodity_en}
+                </span>
               </div>
               <div className="flex justify-between text-slate-300">
-                <span>{isMr ? 'वजन' : 'Batch Net Weight'}:</span>
+                <span>{isMr ? 'वजन' : isHi ? 'बैच वजन' : 'Batch Net Weight'}:</span>
                 <span className="font-bold text-white">{lot.quantity}</span>
               </div>
               <div className="flex justify-between text-slate-300">
-                <span>{isMr ? 'काढणी तारीख' : 'Harvest Date'}:</span>
+                <span>{isMr ? 'काढणी तारीख' : isHi ? 'तुड़ाई तिथि' : 'Harvest Date'}:</span>
                 <span className="font-bold text-emerald-300">{lot.harvest_date}</span>
               </div>
             </div>
@@ -221,16 +232,16 @@ export default function Traceability() {
               </div>
               <div>
                 <h3 className="font-black text-slate-800 text-base">
-                  {isMr ? 'शेतकऱ्यांचे आभार माना' : 'Thank Your Farmer Directly'}
+                  {isMr ? 'शेतकऱ्यांचे आभार माना' : isHi ? 'किसान को सीधे धन्यवाद दें' : 'Thank Your Farmer Directly'}
                 </h3>
                 <p className="text-xs font-semibold text-slate-500">
-                  {isMr ? '१००% रक्कम थेट शेतकऱ्याच्या खात्यात' : 'Direct Consumer-to-Farmer Appreciation'}
+                  {isMr ? '१००% रक्कम थेट शेतकऱ्याच्या खात्यात' : isHi ? '100% राशि सीधे किसान के खाते में' : 'Direct Consumer-to-Farmer Appreciation'}
                 </p>
               </div>
             </div>
 
             <p className="text-xs text-slate-600 font-medium mb-4 leading-relaxed">
-              {isMr ? lot.story_mr : lot.story_en}
+              {isMr ? lot.story_mr : isHi ? (lot.story_hi || lot.story_en) : lot.story_en}
             </p>
 
             <div className="flex items-center gap-2 mb-3">
@@ -238,7 +249,7 @@ export default function Traceability() {
                 <button
                   key={amt}
                   onClick={() => setTipAmount(amt)}
-                  className={`flex-1 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                  className={`flex-1 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                     tipAmount === amt ? 'bg-amber-600 text-white shadow-sm' : 'bg-white text-slate-700 border border-amber-200'
                   }`}
                 >
@@ -253,11 +264,13 @@ export default function Traceability() {
             >
               {tipSuccess ? (
                 <>
-                  <CheckCircle2 className="w-4 h-4" /> {isMr ? 'धन्यवाद! शेतकऱ्यास पाठवले.' : 'Gratitude & Tip Sent to Ramesh!'}
+                  <CheckCircle2 className="w-4 h-4" /> 
+                  {isMr ? 'धन्यवाद! शेतकऱ्यास पाठवले.' : isHi ? 'धन्यवाद! किसान को भेज दिया गया।' : 'Gratitude & Tip Sent to Ramesh!'}
                 </>
               ) : (
                 <>
-                  <Heart className="w-4 h-4 fill-white" /> {isMr ? `₹${tipAmount} पाठवा (थेट UPI)` : `Send ₹${tipAmount} Tip via UPI`}
+                  <Heart className="w-4 h-4 fill-white" /> 
+                  {isMr ? `₹${tipAmount} पाठवा (थेट UPI)` : isHi ? `₹${tipAmount} भेजें (सीधे UPI)` : `Send ₹${tipAmount} Tip via UPI`}
                 </>
               )}
             </button>
@@ -270,7 +283,7 @@ export default function Traceability() {
           <div className="ab-card p-6 sm:p-8 space-y-8">
             <h2 className="text-xl font-black text-slate-800 flex items-center gap-2">
               <Sparkles className="w-6 h-6 text-emerald-600" />
-              {isMr ? 'प्रमाणित प्रवास तपशील (Audit Trail)' : 'Verified Agricultural Provenance'}
+              {isMr ? 'प्रमाणित प्रवास तपशील (Audit Trail)' : isHi ? 'प्रमाणित यात्रा विवरण (Audit Trail)' : 'Verified Agricultural Provenance'}
             </h2>
 
             <div className="relative pl-6 sm:pl-8 space-y-8 border-l-2 border-emerald-200">
@@ -284,7 +297,7 @@ export default function Traceability() {
                   <div className="flex flex-wrap justify-between items-start gap-2 mb-2">
                     <div>
                       <span className="text-[10px] font-black uppercase text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded tracking-wider">
-                        {isMr ? 'टप्पा १: शेतातील उत्पादन' : 'Stage 1: Farm Provenance'}
+                        {isMr ? 'टप्पा १: शेतातील उत्पादन' : isHi ? 'चरण 1: खेत उत्पत्ति व 7/12' : 'Stage 1: Farm Provenance'}
                       </span>
                       <h4 className="font-black text-slate-800 text-base mt-1">{lot.farmer.name}</h4>
                     </div>
@@ -307,10 +320,10 @@ export default function Traceability() {
                   <div className="flex flex-wrap justify-between items-start gap-2 mb-2">
                     <div>
                       <span className="text-[10px] font-black uppercase text-blue-800 bg-blue-100 px-2 py-0.5 rounded tracking-wider">
-                        {isMr ? 'टप्पा २: AI गुणवत्ता तपासणी' : 'Stage 2: AI Computer Vision Grading'}
+                        {isMr ? 'टप्पा २: AI गुणवत्ता तपासणी' : isHi ? 'चरण 2: AI कंप्यूटर विजन ग्रेडिंग' : 'Stage 2: AI Computer Vision Grading'}
                       </span>
                       <h4 className="font-black text-slate-800 text-base mt-1">
-                        {isMr ? lot.quality.grade_mr : lot.quality.grade}
+                        {isMr ? lot.quality.grade_mr : isHi ? (lot.quality.grade_hi || lot.quality.grade) : lot.quality.grade}
                       </h4>
                     </div>
                     <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">
@@ -336,7 +349,7 @@ export default function Traceability() {
                   <div className="flex flex-wrap justify-between items-start gap-2 mb-2">
                     <div>
                       <span className="text-[10px] font-black uppercase text-amber-800 bg-amber-100 px-2 py-0.5 rounded tracking-wider">
-                        {isMr ? 'टप्पा ३: सामायिक शीत-वाहतूक' : 'Stage 3: Cold-Chain Pooled Logistics'}
+                        {isMr ? 'टप्पा ३: सामायिक शीत-वाहतूक' : isHi ? 'चरण 3: कोल्ड-चेन साझा परिवहन' : 'Stage 3: Cold-Chain Pooled Logistics'}
                       </span>
                       <h4 className="font-black text-slate-800 text-base mt-1">{lot.logistics.truck}</h4>
                     </div>
@@ -361,7 +374,7 @@ export default function Traceability() {
                   <div className="flex flex-wrap justify-between items-start gap-2 mb-2">
                     <div>
                       <span className="text-[10px] font-black uppercase text-purple-800 bg-purple-100 px-2 py-0.5 rounded tracking-wider">
-                        {isMr ? 'टप्पा ४: ग्राहकांसाठी उपलब्ध' : 'Stage 4: Retail & Consumer Shelf'}
+                        {isMr ? 'टप्पा ४: ग्राहकांसाठी उपलब्ध' : isHi ? 'चरण 4: खुदरा व उपभोक्ता शेल्फ' : 'Stage 4: Retail & Consumer Shelf'}
                       </span>
                       <h4 className="font-black text-slate-800 text-base mt-1">{lot.retail.buyer}</h4>
                     </div>
@@ -380,15 +393,21 @@ export default function Traceability() {
             <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
               <div>
                 <span className="text-xs font-black text-emerald-800 uppercase tracking-wider block">
-                  {isMr ? 'पारदर्शकतेचा आर्थिक परिणाम' : 'Farmer Realization Premium'}
+                  {isMr ? 'पारदर्शकतेचा आर्थिक परिणाम' : isHi ? 'पारदर्शिता का आर्थिक प्रभाव' : 'Farmer Realization Premium'}
                 </span>
                 <p className="text-xs font-semibold text-slate-600 mt-0.5">
-                  Traceable crops command a 15-20% premium in retail chains and export markets.
+                  {isMr 
+                    ? 'डिजिटल ट्रॅकिंग व प्रमाणपत्रांमुळे किरकोळ साखळ्यांमध्ये १५ ते २०% वाढीव दर मिळतो.'
+                    : isHi
+                    ? 'डिजिटल ट्रैकिंग व सत्यापन के कारण खुदरा श्रृंखलाओं और निर्यात बाजार में 15-20% प्रीमियम मूल्य मिलता है।'
+                    : 'Traceable crops command a 15-20% premium in retail chains and export markets.'}
                 </p>
               </div>
               <div className="text-right shrink-0">
                 <span className="text-2xl font-black text-emerald-700">+₹480 / Qtl</span>
-                <span className="block text-[10px] uppercase font-bold text-slate-400">Additional Realization</span>
+                <span className="block text-[10px] uppercase font-bold text-slate-400">
+                  {isMr ? 'अतिरिक्त उत्पन्न' : isHi ? 'अतिरिक्त आय' : 'Additional Realization'}
+                </span>
               </div>
             </div>
 

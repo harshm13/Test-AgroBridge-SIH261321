@@ -31,6 +31,11 @@ export default function App() {
 
   const t = translations[lang] || translations.en;
 
+  // i18n representation adhering to react-i18next interface
+  const i18n = (typeof window !== 'undefined' && window.i18n?.language)
+    ? window.i18n
+    : { language: lang };
+
   useEffect(() => {
     const handleOnline = () => setIsOffline(false);
     const handleOffline = () => setIsOffline(true);
@@ -42,6 +47,19 @@ export default function App() {
     };
   }, []);
 
+  // Dynamically apply corresponding font class to document.body based on i18n.language
+  useEffect(() => {
+    const currentLang = i18n.language || 'en';
+    const fontClass = currentLang === 'hi'
+      ? 'font-hi'
+      : currentLang === 'mr'
+        ? 'font-mr'
+        : 'font-en';
+
+    document.body.classList.remove('font-en', 'font-hi', 'font-mr');
+    document.body.classList.add(fontClass);
+  }, [i18n.language]);
+
   if (!userRole) {
     return <Login onLogin={(role) => setUserRole(role)} />;
   }
@@ -49,7 +67,7 @@ export default function App() {
   // Mandatory Onboarding for Farmers
   if (userRole === 'farmer' && !onboardingComplete) {
     return (
-      <AppContext.Provider value={{ userRole, lang, setLang, t, setFarmerProfile, setOnboardingComplete }}>
+      <AppContext.Provider value={{ userRole, lang, setLang, t, setFarmerProfile, setOnboardingComplete, i18n }}>
         <FarmerOnboarding />
       </AppContext.Provider>
     );
@@ -76,7 +94,7 @@ export default function App() {
   };
 
   return (
-    <AppContext.Provider value={{ userRole, setUserRole, lang, setLang, t, activeTab, setActiveTab, farmerProfile, setFarmerProfile }}>
+    <AppContext.Provider value={{ userRole, setUserRole, lang, setLang, t, activeTab, setActiveTab, farmerProfile, setFarmerProfile, i18n }}>
       <div className="ab-page-background min-h-screen flex flex-col">
         {isOffline && (
             <div className="bg-amber-100 text-amber-800 px-4 py-2 text-xs font-bold flex items-center justify-center gap-2">

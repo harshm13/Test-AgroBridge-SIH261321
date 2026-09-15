@@ -41,15 +41,15 @@ export default function Navbar() {
 
     // Buyer Navigation Tabs
     const buyerTabs = [
-        { id: 'dashboard', label: 'Buyer Hub', icon: Home },
-        { id: 'marketplace', label: 'Browse Produce', icon: Store },
-        { id: 'market_data', label: 'Price Trends', icon: TrendingUp },
-        { id: 'traceability', label: 'Farm-to-Fork', icon: QrCode },
-        { id: 'logistics', label: 'Transport Share', icon: Truck },
-        { id: 'quality_check', label: 'Quality Audit', icon: ShieldCheck },
-        { id: 'agrobot', label: 'MahaVISTAAR AI', icon: Bot, highlight: true },
-        { id: 'transactions', label: 'Escrow Ledger', icon: CreditCard },
-        { id: 'govt_showcase', label: 'SIH Showcase', icon: Award },
+        { id: 'dashboard', label: lang === 'mr' ? 'खरेदीदार हब' : lang === 'hi' ? 'खरीदार हब' : 'Buyer Hub', icon: Home },
+        { id: 'marketplace', label: lang === 'mr' ? 'शेतमाल शोधा' : lang === 'hi' ? 'उपज ब्राउज़ करें' : 'Browse Produce', icon: Store },
+        { id: 'market_data', label: lang === 'mr' ? 'दर विश्लेषण' : lang === 'hi' ? 'मूल्य रुझान' : 'Price Trends', icon: TrendingUp },
+        { id: 'traceability', label: t.traceability || 'Farm-to-Fork', icon: QrCode },
+        { id: 'logistics', label: lang === 'mr' ? 'वाहतूक सामायिक' : lang === 'hi' ? 'परिवहन साझा' : 'Transport Share', icon: Truck },
+        { id: 'quality_check', label: lang === 'mr' ? 'गुणवत्ता तपासणी' : lang === 'hi' ? 'गुणवत्ता ऑडिट' : 'Quality Audit', icon: ShieldCheck },
+        { id: 'agrobot', label: t.agrobot, icon: Bot, highlight: true },
+        { id: 'transactions', label: lang === 'mr' ? 'एस्क्रो लेजर' : lang === 'hi' ? 'एस्क्रो लेज़र' : 'Escrow Ledger', icon: CreditCard },
+        { id: 'govt_showcase', label: t.govt_showcase || 'SIH Showcase', icon: Award },
     ];
 
     const currentTabs = userRole === 'farmer' ? farmerTabs : buyerTabs;
@@ -57,10 +57,10 @@ export default function Navbar() {
     // Mobile Bottom Navigation Bar Items (5 key items)
     const mobileBottomTabs = [
         { id: 'dashboard', label: t.dashboard, icon: Home },
-        { id: 'market_data', label: 'Prices', icon: TrendingUp },
-        { id: 'agrobot', label: 'Copilot', icon: Bot },
-        { id: 'logistics', label: 'Logistics', icon: Truck },
-        { id: 'marketplace', label: 'Market', icon: Store },
+        { id: 'market_data', label: lang === 'mr' ? 'बाजार भाव' : lang === 'hi' ? 'मंडी भाव' : 'Prices', icon: TrendingUp },
+        { id: 'agrobot', label: lang === 'mr' ? 'कोपायलट' : lang === 'hi' ? 'कोपायलट' : 'Copilot', icon: Bot },
+        { id: 'logistics', label: lang === 'mr' ? 'वाहतूक' : lang === 'hi' ? 'लॉजिस्टिक्स' : 'Logistics', icon: Truck },
+        { id: 'marketplace', label: lang === 'mr' ? 'बाजारपेठ' : lang === 'hi' ? 'बाज़ार' : 'Market', icon: Store },
     ];
 
     const handleTabClick = (id) => {
@@ -89,7 +89,7 @@ export default function Navbar() {
                                 </span>
                             </div>
                             <span className="text-[10px] uppercase font-bold text-emerald-300/90 tracking-wider whitespace-nowrap">
-                                {userRole === 'farmer' ? '🌾 Farmer View' : '🛒 Buyer View'}
+                                {userRole === 'farmer' ? (t.farmer_view || '🌾 Farmer View') : (t.buyer_view || '🛒 Buyer View')}
                             </span>
                         </div>
                     </div>
@@ -129,8 +129,8 @@ export default function Navbar() {
                             className="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 bg-emerald-800/70 hover:bg-emerald-700/80 text-emerald-100 rounded-xl border border-emerald-600/50 transition text-xs font-bold shadow-sm whitespace-nowrap"
                         >
                             <ArrowRightLeft className="w-3.5 h-3.5 text-amber-300" />
-                            <span>{userRole === 'farmer' ? 'Farmer' : 'Buyer'}</span>
-                            <span className="bg-amber-400 text-emerald-950 text-[9px] font-black px-1.5 py-0.5 rounded uppercase">Switch</span>
+                            <span>{userRole === 'farmer' ? (lang === 'mr' ? 'शेतकरी' : lang === 'hi' ? 'किसान' : 'Farmer') : (lang === 'mr' ? 'खरेदीदार' : lang === 'hi' ? 'खरीदार' : 'Buyer')}</span>
+                            <span className="bg-amber-400 text-emerald-950 text-[9px] font-black px-1.5 py-0.5 rounded uppercase">{lang === 'mr' ? 'बदला' : lang === 'hi' ? 'बदलें' : 'Switch'}</span>
                         </button>
 
                         {/* Language Selector */}
@@ -226,14 +226,18 @@ export default function Navbar() {
 
                             <div className="p-4 bg-emerald-50 border-b border-emerald-100 flex items-center justify-between">
                                 <div>
-                                    <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">Current Mode</div>
-                                    <div className="font-extrabold text-emerald-900">{userRole === 'farmer' ? '🌾 Farmer View' : '🛒 Buyer View'}</div>
+                                    <div className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+                                        {lang === 'mr' ? 'सध्याची भूमिका' : lang === 'hi' ? 'वर्तमान मोड' : 'Current Mode'}
+                                    </div>
+                                    <div className="font-extrabold text-emerald-900">
+                                        {userRole === 'farmer' ? (t.farmer_view || '🌾 Farmer View') : (t.buyer_view || '🛒 Buyer View')}
+                                    </div>
                                 </div>
                                 <button 
                                     onClick={toggleRole}
                                     className="bg-emerald-700 text-white px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1 shadow-sm"
                                 >
-                                    <ArrowRightLeft className="w-3 h-3" /> Switch
+                                    <ArrowRightLeft className="w-3 h-3" /> {lang === 'mr' ? 'बदला' : lang === 'hi' ? 'बदलें' : 'Switch'}
                                 </button>
                             </div>
 

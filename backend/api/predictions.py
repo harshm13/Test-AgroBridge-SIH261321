@@ -1,12 +1,27 @@
 from fastapi import APIRouter, HTTPException
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import Optional, List, Dict, Any
-from ml.predict import predict_crop_price, get_7_day_forecast
+import logging
+from ml.predict import predict_crop_price, get_7_day_forecast, get_prediction
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter(
     prefix="/api/predict",
     tags=["Price Predictions & Explainable AI (TFT)"]
 )
+
+recommendation_router = APIRouter(
+    prefix="/api",
+    tags=["Sell/Wait Recommendation Engine"]
+)
+
+class RecommendationRequest(BaseModel):
+    crop: str = Field(..., example="onion", description="Commodity name (e.g. onion, tomato, soybean, cotton)")
+    district: Optional[str] = Field("Nashik", example="Nashik", description="District in Maharashtra")
+    current_price: float = Field(..., example=2400.0, description="Current spot price per quintal in INR")
+    transport_cost: Optional[float] = Field(45.0, example=45.0, description="Estimated transit cost per quintal")
+    storage_cost: Optional[float] = Field(30.0, example=30.0, description="Estimated holding/storage cost per quintal")
 
 class PriceRequest(BaseModel):
     crop_name: str
@@ -139,3 +154,56 @@ async def get_price_prediction(request: PriceRequest):
         "forecast_multi_horizon": forecast_multi_horizon,
         "forecast_7_days": forecast_7_days
     }
+
+
+def execute_recommendation(request: RecommendationRequest) -> Dict[str, Any]:
+    """
+    Core handler executing ML pipeline prediction and Sell/Wait decision logic.
+
+    Args:
+        request (RecommendationRequest): User request payload.
+
+    Returns:
+        Dict[str, Any]: Recommendation and SHAP explanation payload.
+    """
+    crop = request.crop.strip().lower()
+    district = (request.district or "Nashik").strip()
+    current_price = float(request.current_price)
+    transport_cost = float(request.transport_cost if request.transport_cost is not None else 45.0)
+    storage_cost = float(request.storage_cost if request.storage_cost is not None else 30.0)
+
+    try:
+        recommendation = get_prediction(
+            crop=crop,
+            district=district,
+            current_price=current_price,
+            transport_cost=transport_cost,
+            storage_cost=storage_cost
+        )
+        return recommendation
+    except Exception as exc:
+        logger.error("Error generating recommendation for crop %s: %s", crop, exc, exc_info=True)
+        raise HTTPException(
+            status_code=500,
+            detail=f"Failed to generate price prediction and recommendation: {str(exc)}"
+        )
+
+
+@recommendation_router.post("/recommendation")
+async def post_api_recommendation(request: RecommendationRequest):
+    """
+    POST /api/recommendation
+    Predicts 7-day and 14-day APMC prices using XGBoost and recommends 'SELL' or 'WAIT'
+    based on whether the predicted 14-day net gain exceeds transportation and storage costs.
+    Includes bilingual SHAP explainability in English and Marathi.
+    """
+    return execute_recommendation(request)
+
+
+@router.post("/recommendation")
+async def post_predict_recommendation(request: RecommendationRequest):
+    """
+    POST /api/predict/recommendation
+    Alias endpoint for Sell/Wait decision support and SHAP explanations.
+    """
+    return execute_recommendation(request)

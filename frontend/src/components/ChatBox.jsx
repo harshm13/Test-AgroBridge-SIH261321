@@ -138,30 +138,59 @@ export default function ChatBox() {
     const getOfflineFallbackResponse = (query) => {
         const q = query.toLowerCase();
         
-        if (q.includes('onion') || q.includes('कांदा') || q.includes('प्याज़')) {
+        if (q.includes('onion') || q.includes('कांदा') || q.includes('प्याज़') || q.includes('प्याज')) {
             return {
-                text: "🧅 **Nashik APMC Mandi Forecast**: Current rate is ₹2,450/Qtl. Price trends suggest a +12% increase over the next 4 days due to supply contraction in Solapur. **Recommendation**: Hold your stock for 3 days to maximize net realization.",
-                actions: [{ label: 'View Price Charts', tab: 'market_data' }, { label: 'Check Buyers', tab: 'marketplace' }]
+                text: lang === 'mr'
+                    ? "🧅 **नाशिक बाजार समिती अंदाज**: सध्याचा दर ₹२,४५०/क्विंटल आहे. सोलापूर भागातील आवक घटल्याने पुढील ४ दिवसांत १२% भाववाढ अपेक्षित आहे. **शिफारस**: अधिक नफ्यासाठी आपला माल ३ दिवस राखून ठेवा."
+                    : lang === 'hi'
+                    ? "🧅 **नासिक एपीएमसी मंडी पूर्वानुमान**: वर्तमान भाव ₹2,450/क्विंटल है। सोलापुर में आवक घटने के कारण अगले 4 दिनों में 12% की मूल्य वृद्धि संभावित है। **सिफारिश**: अधिकतम शुद्ध आय के लिए अपना माल 3 दिन रोककर रखें।"
+                    : "🧅 **Nashik APMC Mandi Forecast**: Current rate is ₹2,450/Qtl. Price trends suggest a +12% increase over the next 4 days due to supply contraction in Solapur. **Recommendation**: Hold your stock for 3 days to maximize net realization.",
+                actions: [
+                    { label: lang === 'mr' ? '📊 दर आलेख पहा' : lang === 'hi' ? '📊 भाव चार्ट देखें' : '📊 View Price Charts', tab: 'market_data' },
+                    { label: lang === 'mr' ? '🛒 खरेदीदार तपासा' : lang === 'hi' ? '🛒 खरीदार देखें' : '🛒 Check Buyers', tab: 'marketplace' }
+                ]
             };
         } else if (q.includes('tomato') || q.includes('टोमॅटो') || q.includes('टमाटर')) {
             return {
-                text: "🍅 **Pune Mandi Rate**: Grade A Tomatoes are trading at ₹1,850/Qtl. Quality Grade B trades around ₹1,400/Qtl. Use our Computer Vision AI Quality Check to grade your harvest before selling!",
-                actions: [{ label: 'Grade Tomatoes Now', tab: 'quality_check' }, { label: 'View Market Trends', tab: 'market_data' }]
+                text: lang === 'mr'
+                    ? "🍅 **पुणे बाजार समिती दर**: ग्रेड 'अ' टोमॅटो ₹१,८५०/क्विंटल दराने विकला जात आहे. ग्रेड 'ब' चा दर ₹१,४००/क्विंटल आहे. विक्रीपूर्वी संगणक दृष्टी AI गुणवत्ता तपासणी वापरून ग्रेडिंग करा!"
+                    : lang === 'hi'
+                    ? "🍅 **पुणे मंडी भाव**: ग्रेड A टमाटर ₹1,850/क्विंटल पर बिक रहा है। ग्रेड B का भाव लगभग ₹1,400/क्विंटल है। बेचने से पहले हमारे कंप्यूटर विज़न AI क्वालिटी चेक से ग्रेडिंग करें!"
+                    : "🍅 **Pune Mandi Rate**: Grade A Tomatoes are trading at ₹1,850/Qtl. Quality Grade B trades around ₹1,400/Qtl. Use our Computer Vision AI Quality Check to grade your harvest before selling!",
+                actions: [
+                    { label: lang === 'mr' ? '🛡️ गुणवत्ता तपासा' : lang === 'hi' ? '🛡️ गुणवत्ता जांचें' : '🛡️ Grade Tomatoes Now', tab: 'quality_check' },
+                    { label: lang === 'mr' ? '📊 बाजार कल' : lang === 'hi' ? '📊 मंडी रुझान' : '📊 View Market Trends', tab: 'market_data' }
+                ]
             };
-        } else if (q.includes('truck') || q.includes('transport') || q.includes('logistics') || q.includes('वाहना') || q.includes('गाडी')) {
+        } else if (q.includes('truck') || q.includes('transport') || q.includes('logistics') || q.includes('वाहना') || q.includes('गाडी') || q.includes('ट्रक') || q.includes('गाड़ी') || q.includes('भाड़ा')) {
             return {
-                text: "🚛 **Hyper-Local Logistics Pooling**: Found 3 active farmers in your Taluka heading to Vashi Market tomorrow morning. Shared truck savings: **₹1,200 per farmer** (40% freight reduction).",
-                actions: [{ label: 'Join Logistics Pool', tab: 'logistics' }]
+                text: lang === 'mr'
+                    ? "🚛 **स्थानिक सामायिक वाहतूक**: आपल्या तालुक्यातील ३ शेतकरी उद्या सकाळी वाशी मार्केटला माल घेऊन जात आहेत. सामायिक वाहनामुळे प्रति शेतकरी **₹१,२०० बचत** (४०% कमी खर्च) होईल."
+                    : lang === 'hi'
+                    ? "🚛 **हाइपर-लोकल साझा परिवहन पूल**: आपके तालुका से 3 किसान कल सुबह वाशी मंडी जा रहे हैं। साझा ट्रक से प्रति किसान **₹1,200 की बचत** (40% भाड़ा कमी) होगी।"
+                    : "🚛 **Hyper-Local Logistics Pooling**: Found 3 active farmers in your Taluka heading to Vashi Market tomorrow morning. Shared truck savings: **₹1,200 per farmer** (40% freight reduction).",
+                actions: [{ label: lang === 'mr' ? '🚛 सामायिक वाहनात सामील व्हा' : lang === 'hi' ? '🚛 साझा वाहन में शामिल हों' : '🚛 Join Logistics Pool', tab: 'logistics' }]
             };
         } else if (q.includes('soybean') || q.includes('सोयाबीन')) {
             return {
-                text: "🌱 **Latur APMC Mandi**: Current rate is ₹4,680/Qtl (Grade A moisture < 10%). Demand is steady with FPO procurement active in Latur and Nanded.",
-                actions: [{ label: 'Explore Opportunities', tab: 'marketplace' }]
+                text: lang === 'mr'
+                    ? "🌱 **लातूर बाजार समिती**: सध्याचा दर ₹४,६८०/क्विंटल आहे (ग्रेड 'अ', ओलावा < १०%). लातूर आणि नांदेड भागात शेतकरी उत्पादक कंपन्यांची (FPO) थेट खरेदी सुरू आहे."
+                    : lang === 'hi'
+                    ? "🌱 **लातूर एपीएमसी मंडी**: वर्तमान भाव ₹4,680/क्विंटल है (ग्रेड A, नमी < 10%)। लातूर और नांदेड़ में किसान उत्पादक कंपनियों (FPO) द्वारा सीधी खरीद सक्रिय है।"
+                    : "🌱 **Latur APMC Mandi**: Current rate is ₹4,680/Qtl (Grade A moisture < 10%). Demand is steady with FPO procurement active in Latur and Nanded.",
+                actions: [{ label: lang === 'mr' ? '🌾 संधी शोधा' : lang === 'hi' ? '🌾 अवसर देखें' : '🌾 Explore Opportunities', tab: 'marketplace' }]
             };
         } else {
             return {
-                text: `AgroBridge AI: Thank you for asking. Based on Maharashtra Mandi data (Agmarknet), wholesale market arrivals are stable today. For maximum returns, ensure your produce is graded (Grade A/B) and consider logistics pooling with neighboring farmers to save up to 40% transport costs.`,
-                actions: [{ label: 'Check Market Intel', tab: 'market_data' }, { label: 'Logistics Sharing', tab: 'logistics' }]
+                text: lang === 'mr'
+                    ? "ॲग्रोब्रिज AI: विचारल्याबद्दल धन्यवाद! महाराष्ट्र शासन ॲगमार्कनेट आकडेवारीनुसार राज्यातील आवक आज स्थिर आहे. उत्तम नफ्यासाठी पिकाची गुणवत्ता ग्रेडिंग करून घ्या आणि सामायिक वाहनाचा वापर करून वाहतूक खर्चात ४०% बचत करा."
+                    : lang === 'hi'
+                    ? "एग्रोब्रिज AI: पूछने के लिए धन्यवाद। महाराष्ट्र मंडी आंकड़ों (Agmarknet) के अनुसार आज थोक मंडियों में आवक स्थिर है। अधिकतम लाभ के लिए अपनी फसल की गुणवत्ता ग्रेडिंग करवाएं और 40% तक भाड़ा बचाने के लिए साझा वाहन का उपयोग करें।"
+                    : "AgroBridge AI: Thank you for asking. Based on Maharashtra Mandi data (Agmarknet), wholesale market arrivals are stable today. For maximum returns, ensure your produce is graded (Grade A/B) and consider logistics pooling with neighboring farmers to save up to 40% transport costs.",
+                actions: [
+                    { label: lang === 'mr' ? '📊 बाजार भाव' : lang === 'hi' ? '📊 मंडी भाव' : '📊 Check Market Intel', tab: 'market_data' },
+                    { label: lang === 'mr' ? '🚛 सामायिक वाहतूक' : lang === 'hi' ? '🚛 साझा वाहन' : '🚛 Logistics Sharing', tab: 'logistics' }
+                ]
             };
         }
     };
@@ -186,7 +215,7 @@ export default function ChatBox() {
             const response = await fetch('http://localhost:8000/api/chat/ask', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: messageText })
+                body: JSON.stringify({ message: messageText, lang })
             });
 
             if (response.ok) {
@@ -197,14 +226,14 @@ export default function ChatBox() {
                 // Contextual action detection
                 const actions = [];
                 const lowerReply = botReplyText.toLowerCase();
-                if (lowerReply.includes('price') || lowerReply.includes('mandi') || lowerReply.includes('rate') || lowerReply.includes('market')) {
-                    actions.push({ label: '📊 Market Intel', tab: 'market_data' });
+                if (lowerReply.includes('price') || lowerReply.includes('mandi') || lowerReply.includes('rate') || lowerReply.includes('market') || lowerReply.includes('भाव') || lowerReply.includes('दर')) {
+                    actions.push({ label: lang === 'mr' ? '📊 बाजार भाव' : lang === 'hi' ? '📊 मंडी भाव' : '📊 Market Intel', tab: 'market_data' });
                 }
-                if (lowerReply.includes('pool') || lowerReply.includes('truck') || lowerReply.includes('transport') || lowerReply.includes('logistics')) {
-                    actions.push({ label: '🚛 Logistics Sharing', tab: 'logistics' });
+                if (lowerReply.includes('pool') || lowerReply.includes('truck') || lowerReply.includes('transport') || lowerReply.includes('logistics') || lowerReply.includes('वाहतूक') || lowerReply.includes('परिवहन') || lowerReply.includes('ट्रक')) {
+                    actions.push({ label: lang === 'mr' ? '🚛 सामायिक वाहतूक' : lang === 'hi' ? '🚛 साझा वाहन' : '🚛 Logistics Sharing', tab: 'logistics' });
                 }
-                if (lowerReply.includes('grade') || lowerReply.includes('quality') || lowerReply.includes('defect')) {
-                    actions.push({ label: '🛡️ Quality Check', tab: 'quality_check' });
+                if (lowerReply.includes('grade') || lowerReply.includes('quality') || lowerReply.includes('defect') || lowerReply.includes('गुणवत्ता') || lowerReply.includes('प्रतवारी')) {
+                    actions.push({ label: lang === 'mr' ? '🛡️ गुणवत्ता तपासणी' : lang === 'hi' ? '🛡️ गुणवत्ता जांच' : '🛡️ Quality Check', tab: 'quality_check' });
                 }
 
                 const botMsg = {
@@ -243,10 +272,22 @@ export default function ChatBox() {
     };
 
     const promptChips = [
-        { label: '🧅 Onion Price Forecast in Nashik', query: 'What is the 7-day expected onion price in Nashik APMC?' },
-        { label: '🚛 Find Shared Truck Pools', query: 'Are there active logistics pools for transport near my district?' },
-        { label: '📸 How to Grade Crop Quality?', query: 'How does the AI quality grading feature work for tomatoes and onions?' },
-        { label: '🌱 Soybean Mandi Rates Today', query: 'Show me current wholesale market rates for Soybean in Latur.' }
+        { 
+            label: lang === 'mr' ? '🧅 नाशिक कांदा भाव अंदाज' : lang === 'hi' ? '🧅 नासिक प्याज मूल्य पूर्वानुमान' : '🧅 Onion Price Forecast in Nashik', 
+            query: lang === 'mr' ? 'नाशिक बाजार समितीमध्ये पुढील ७ दिवसांचा कांद्याचा अपेक्षित भाव काय आहे?' : lang === 'hi' ? 'नासिक एपीएमसी में अगले 7 दिनों का प्याज का अपेक्षित भाव क्या है?' : 'What is the 7-day expected onion price in Nashik APMC?' 
+        },
+        { 
+            label: lang === 'mr' ? '🚛 सामायिक वाहन शोधा' : lang === 'hi' ? '🚛 साझा वाहन (ट्रक) खोजें' : '🚛 Find Shared Truck Pools', 
+            query: lang === 'mr' ? 'माझ्या तालुक्यात इतर शेतकऱ्यांसोबत सामायिक वाहतूक उपलब्ध आहे का?' : lang === 'hi' ? 'क्या मेरे जिले के पास उपज ले जाने के लिए साझा लॉजिस्टिक्स उपलब्ध है?' : 'Are there active logistics pools for transport near my district?' 
+        },
+        { 
+            label: lang === 'mr' ? '📸 पिकाची प्रतवारी कशी करावी?' : lang === 'hi' ? '📸 फसल गुणवत्ता ग्रेडिंग कैसे करें?' : '📸 How to Grade Crop Quality?', 
+            query: lang === 'mr' ? 'टोमॅटो आणि कांद्यासाठी AI गुणवत्ता तपासणी कशी काम करते?' : lang === 'hi' ? 'टमाटर और प्याज के लिए AI क्वालिटी ग्रेडिंग कैसे काम करती है?' : 'How does the AI quality grading feature work for tomatoes and onions?' 
+        },
+        { 
+            label: lang === 'mr' ? '🌱 लातूर सोयाबीन दर' : lang === 'hi' ? '🌱 लातूर सोयाबीन आज का भाव' : '🌱 Soybean Mandi Rates Today', 
+            query: lang === 'mr' ? 'लातूर बाजार समितीतील आजचे सोयाबीनचे दर दाखवा.' : lang === 'hi' ? 'लातूर मंडी में आज सोयाबीन का थोक भाव क्या है?' : 'Show me current wholesale market rates for Soybean in Latur.' 
+        }
     ];
 
     return (
@@ -327,7 +368,8 @@ export default function ChatBox() {
             {/* Quick Prompt Chips */}
             <div className="bg-emerald-50/90 border-x border-b border-emerald-100 px-4 sm:px-8 py-2.5 flex items-center gap-2 overflow-x-auto hide-scrollbar shrink-0">
                 <span className="text-[11px] font-bold uppercase tracking-wider text-emerald-800 flex items-center gap-1 shrink-0">
-                    <Zap className="w-3.5 h-3.5 text-amber-500" /> Quick Ask:
+                    <Zap className="w-3.5 h-3.5 text-amber-500" /> 
+                    {lang === 'mr' ? 'त्वरित प्रश्न:' : lang === 'hi' ? 'त्वरित पूछें:' : 'Quick Ask:'}
                 </span>
                 {promptChips.map((chip, idx) => (
                     <button
@@ -433,7 +475,13 @@ export default function ChatBox() {
                                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-bounce"></span>
                                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-bounce delay-100"></span>
                                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-bounce delay-200"></span>
-                                <span className="text-xs font-semibold text-slate-400 ml-2">AgroBridge AI is analyzing mandi data...</span>
+                                <span className="text-xs font-semibold text-slate-400 ml-2">
+                                    {lang === 'mr' 
+                                        ? 'ॲग्रोब्रिज AI बाजार माहितीचे विश्लेषण करत आहे...' 
+                                        : lang === 'hi' 
+                                        ? 'एग्रोब्रिज AI मंडी डेटा का विश्लेषण कर रहा है...' 
+                                        : 'AgroBridge AI is analyzing mandi data...'}
+                                </span>
                             </div>
                         </div>
                     )}
@@ -477,7 +525,9 @@ export default function ChatBox() {
                         disabled={!input.trim() || isLoading}
                         className="bg-emerald-800 hover:bg-emerald-900 disabled:opacity-50 text-white p-3.5 sm:px-8 rounded-2xl font-bold transition flex items-center gap-2 shadow-md hover:shadow-lg disabled:cursor-not-allowed shrink-0 cursor-pointer text-base"
                     >
-                        <span className="hidden sm:inline">Send</span>
+                        <span className="hidden sm:inline">
+                            {lang === 'mr' ? 'पाठवा' : lang === 'hi' ? 'भेजें' : 'Send'}
+                        </span>
                         <Send className="w-5 h-5" />
                     </button>
                 </form>

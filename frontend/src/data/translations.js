@@ -78,7 +78,39 @@ export const translations = {
     // Digital Twin
     digital_twin_title: 'Farmer Digital Twin Simulation',
     digital_twin_sub: 'Hyper-personalized advisory factoring soil health, on-farm storage & financial liquidity.',
-    simulate_btn: 'Run Farm Decision Simulation'
+    simulate_btn: 'Run Farm Decision Simulation',
+
+    // Onboarding
+    welcome_title: 'Welcome to AgroBridge 🌾',
+    welcome_sub: "Let's set up your farm profile to get you the best market prices.",
+    full_name: 'Full Name',
+    full_name_placeholder: 'e.g. Ramesh Patil',
+    preferred_language: 'Preferred Language',
+    preferred_lang_sub: 'We localize recommendations based on this.',
+    continue_btn: 'Continue',
+    farm_location_title: 'Farm Location',
+    farm_location_sub: 'This helps us match you with nearby buyers and calculate transport costs.',
+    village_taluka: 'Village / Taluka',
+    village_placeholder: 'e.g. Sinnar',
+    state: 'State',
+    district: 'District',
+    back_btn: 'Back',
+    farm_size_crops_title: 'Farm Size & Crops',
+    farm_size_crops_sub: 'What are you growing this season?',
+    total_farm_size: 'Total Farm Size',
+    acres: 'acres',
+    acre: 'acre',
+    primary_crops: 'Primary Crops',
+    select_all_apply: 'Select all that apply',
+    review_btn: 'Review',
+    ready_to_go: 'Ready to go!',
+    profile_complete_sub: 'Your farm profile is complete.',
+    farmer_label: 'Farmer',
+    location_label: 'Location',
+    farm_size_label: 'Farm Size',
+    crops_label: 'Crops',
+    edit_btn: 'Edit',
+    enter_dashboard_btn: 'Enter Dashboard'
   },
 
   mr: {
@@ -160,7 +192,39 @@ export const translations = {
     // Digital Twin
     digital_twin_title: 'शेतकरी डिजिटल मॉडेल (Digital Twin)',
     digital_twin_sub: 'जमीन प्रकार, कांदा चाळ साठवणूक आणि पैशांची गरज यावर आधारित वैयक्तिक सल्ला.',
-    simulate_btn: 'निर्णय पडताळणी (Simulation) करा'
+    simulate_btn: 'निर्णय पडताळणी (Simulation) करा',
+
+    // Onboarding
+    welcome_title: 'AgroBridge मध्ये आपले स्वागत आहे 🌾',
+    welcome_sub: 'उत्कृष्ट बाजारभाव मिळविण्यासाठी आपले शेत प्रोफाइल तयार करा.',
+    full_name: 'पूर्ण नाव',
+    full_name_placeholder: 'उदा. रमेश पाटील',
+    preferred_language: 'पसंतीची भाषा',
+    preferred_lang_sub: 'या आधारावर आम्ही आपल्या शिफारसी स्थानिक भाषेत देऊ.',
+    continue_btn: 'पुढे जा',
+    farm_location_title: 'शेताचे ठिकाण',
+    farm_location_sub: 'यामुळे आपल्याला जवळच्या खरेदीदारांशी जोडण्यास आणि वाहतूक खर्च मोजण्यास मदत होते.',
+    village_taluka: 'गाव / तालुका',
+    village_placeholder: 'उदा. सिन्नर',
+    state: 'राज्य',
+    district: 'जिल्हा',
+    back_btn: 'मागे',
+    farm_size_crops_title: 'शेताचा आकार आणि पिके',
+    farm_size_crops_sub: 'या हंगामात आपण काय पिकवत आहात?',
+    total_farm_size: 'एकूण शेताचा आकार',
+    acres: 'एकर',
+    acre: 'एकर',
+    primary_crops: 'मुख्य पिके',
+    select_all_apply: 'लागू असलेले सर्व निवडा',
+    review_btn: 'तपासा',
+    ready_to_go: 'सज्ज झाले!',
+    profile_complete_sub: 'आपले शेतकरी प्रोफाइल पूर्ण झाले आहे.',
+    farmer_label: 'शेतकरी',
+    location_label: 'ठिकाण',
+    farm_size_label: 'शेताचा आकार',
+    crops_label: 'पिके',
+    edit_btn: 'बदला',
+    enter_dashboard_btn: 'डॅशबोर्डवर जा'
   },
 
   hi: {
@@ -242,6 +306,38 @@ export const translations = {
     // Digital Twin
     digital_twin_title: 'किसान डिजिटल ट्विन (Digital Twin)',
     digital_twin_sub: 'मिट्टी, प्याज भंडारण व वित्तीय जरूरत के आधार पर व्यक्तिगत रणनीति।',
-    simulate_btn: 'रणनीति सिमुलेशन चलाएं'
+    simulate_btn: 'रणनीति सिमुलेशन चलाएं',
+
+    // Onboarding
+    welcome_title: 'AgroBridge में आपका स्वागत है 🌾',
+    welcome_sub: 'सर्वोत्तम बाजार भाव पाने के लिए अपनी कृषि प्रोफाइल बनाएं।',
+    full_name: 'पूरा नाम',
+    full_name_placeholder: 'उदा. रमेश पाटिल',
+    preferred_language: 'पसंदीदा भाषा',
+    preferred_lang_sub: 'हम इसके आधार पर आपकी सलाह को स्थानीय बनाएंगे।',
+    continue_btn: 'आगे बढ़ें',
+    farm_location_title: 'खेत का स्थान',
+    farm_location_sub: 'इससे हम आपको नजदीकी खरीदारों से जोड़ने और परिवहन लागत का अनुमान लगाने में मदद करते हैं।',
+    village_taluka: 'गाँव / तालुका',
+    village_placeholder: 'उदा. सिन्नर',
+    state: 'राज्य',
+    district: 'जिला',
+    back_btn: 'पीछे जाएं',
+    farm_size_crops_title: 'खेत का आकार और फसलें',
+    farm_size_crops_sub: 'इस मौसम में आप क्या उगा रहे हैं?',
+    total_farm_size: 'कुल खेत का आकार',
+    acres: 'एकड़',
+    acre: 'एकड़',
+    primary_crops: 'मुख्य फसलें',
+    select_all_apply: 'लागू होने वाले सभी चुनें',
+    review_btn: 'समीक्षा करें',
+    ready_to_go: 'तैयार है!',
+    profile_complete_sub: 'आपकी कृषि प्रोफाइल पूरी हो गई है।',
+    farmer_label: 'किसान',
+    location_label: 'स्थान',
+    farm_size_label: 'खेत का आकार',
+    crops_label: 'फसलें',
+    edit_btn: 'संपादित करें',
+    enter_dashboard_btn: 'डैशबोर्ड में प्रवेश करें'
   }
 };

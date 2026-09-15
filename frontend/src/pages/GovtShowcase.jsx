@@ -10,6 +10,7 @@ import { motion } from 'framer-motion';
 export default function GovtShowcase() {
   const { lang, setActiveTab } = useContext(AppContext);
   const isMr = lang === 'mr';
+  const isHi = lang === 'hi';
 
   const [activeDemo, setActiveDemo] = useState('onion');
 
@@ -49,31 +50,40 @@ export default function GovtShowcase() {
     {
       phase: "Phase 1: Pilot",
       phase_mr: "टप्पा १: पथदर्शी प्रकल्प (Pilot)",
+      phase_hi: "चरण 1: पायलट प्रोजेक्ट (Pilot)",
       timeline: "Months 1 - 4",
       title: "APMC Pilot in Nashik & Pune",
       title_mr: "नाशिक व पुणे बाजार समित्यांमध्ये सुरुवात",
+      title_hi: "नासिक व पुणे मंडी में पायलट शुरुआत",
       desc_en: "Partner with 3 key APMCs (Lasalgaon, Nashik, Pune) and onboard 500 smallholder farmers, 4 FPOs, and 25 verified corporate buyers.",
       desc_mr: "लासलगाव, नाशिक व पुणे बाजार समित्यांमध्ये ५०० शेतकरी, ४ शेतकरी उत्पादक कंपन्या (FPO) आणि २५ प्रमाणित खरेदीदारांसह सुरुवात.",
+      desc_hi: "3 प्रमुख मंडियों (लासलगांव, नासिक, पुणे) के साथ साझेदारी और 500 छोटे किसानों, 4 एफपीओ तथा 25 सत्यापित खरीदारों को ऑनबोर्ड करना।",
       status: "Ready for Deployment"
     },
     {
       phase: "Phase 2: Scale",
       phase_mr: "टप्पा २: राज्यव्यापी विस्तार",
+      phase_hi: "चरण 2: राज्यव्यापी विस्तार",
       timeline: "Months 5 - 12",
       title: "MSAMB Statewide Integration",
       title_mr: "महाराष्ट्र राज्य कृषी पणन मंडळ (MSAMB) एकात्मता",
+      title_hi: "महाराष्ट्र राज्य कृषि विपणन बोर्ड (MSAMB) एकीकरण",
       desc_en: "Seamless digital integration with MSAMB and e-NAM databases across all 36 Maharashtra districts, serving 50,000+ farmers.",
       desc_mr: "महाराष्ट्रातील सर्व ३६ जिल्ह्यांमधील बाजार समित्या आणि MSAMB डेटाबेसशी थेट जोडणी, ५०,०००+ शेतकऱ्यांपर्यंत पोहोच.",
+      desc_hi: "महाराष्ट्र के सभी 36 जिलों में एमएसएएमबी और ई-नाम डेटाबेस के साथ सहज डिजिटल एकीकरण, 50,000+ किसानों तक पहुंच।",
       status: "Architecture Designed"
     },
     {
       phase: "Phase 3: Sustainability",
       phase_mr: "टप्पा ३: आत्मनिर्भर स्वावलंबन",
+      phase_hi: "चरण 3: आत्मनिर्भर स्वावलंबन",
       timeline: "Year 2 Onwards",
       title: "Self-Sustaining Public-Private Model",
       title_mr: "स्वयं-शाश्वत महसूल मॉडेल",
+      title_hi: "आत्मनिर्भर सार्वजनिक-निजी मॉडल",
       desc_en: "Zero fees for smallholder farmers. 0.5% buyer convenience fee on settled escrow and SaaS intelligence tools for FPOs ensure ongoing platform self-reliance.",
       desc_mr: "लहान शेतकऱ्यांसाठी १००% मोफत सेवा. खरेदीदारांवर नाममात्र ०.५% शुल्क आणि FPO साठी डिजिटल साधनांद्वारे प्लॅटफॉर्म स्वयंपूर्ण.",
+      desc_hi: "छोटे किसानों के लिए 100% निःशुल्क सेवा। सुलझे हुए एस्क्रो पर 0.5% खरीदार सुविधा शुल्क और एफपीओ के लिए डिजिटल उपकरणों द्वारा मंच का आत्मनिर्भर संचालन।",
       status: "Financial Projections Ready"
     }
   ];
@@ -98,6 +108,8 @@ export default function GovtShowcase() {
           <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-tight">
             {isMr 
               ? 'महाराष्ट्र शासन धोरण संरेखन व सादरीकरण केंद्र' 
+              : isHi
+              ? 'महाराष्ट्र सरकार नीति संरेखण व प्रस्तुति केंद्र'
               : 'Government of Maharashtra Alignment & SIH Showcase'
             }
           </h1>
@@ -105,6 +117,8 @@ export default function GovtShowcase() {
           <p className="text-emerald-100/90 font-medium max-w-3xl text-sm sm:text-base leading-relaxed">
             {isMr 
               ? 'ॲग्रोब्रिज हे केवळ एक ॲप नसून महाराष्ट्र शासनाच्या महाविस्तार-AI (MahaVISTAAR-AI) व ॲग्रीस्टॅक (AgriStack) उपक्रमांशी सुसंगत, शेतकऱ्यांच्या उत्पन्नवाढीसाठी तयार केलेले डिजिटल सार्वजनिक साधन (Public Digital Good) आहे.'
+              : isHi
+              ? 'एग्रोब्रिज केवल एक ऐप नहीं, बल्कि महाराष्ट्र सरकार की महाविस्तार-AI (MahaVISTAAR-AI) व एग्रीस्टैक (AgriStack) पहलों के साथ संरेखित, किसानों की आय बढ़ाने हेतु निर्मित डिजिटल पब्लिक गुड (DPI) है।'
               : 'AgroBridge is engineered as a policy-aligned, scalable Digital Public Infrastructure (DPI) layer that integrates directly with MahaVISTAAR-AI, AgriStack, and MSAMB to systematically eliminate information asymmetry for Maharashtra farmers.'
             }
           </p>
@@ -114,25 +128,33 @@ export default function GovtShowcase() {
       {/* 4 Core Quantified Impact Pillars */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="ab-card p-5 border-l-4 border-l-emerald-500 space-y-1">
-          <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Net Realization</span>
+          <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+            {isMr ? 'निव्वळ नफा' : isHi ? 'शुद्ध आय' : 'Net Realization'}
+          </span>
           <div className="text-3xl font-black text-emerald-600">+18.4%</div>
           <p className="text-xs text-slate-600 font-medium">Average increase in farmer earnings after logistics & buyer optimization.</p>
         </div>
 
         <div className="ab-card p-5 border-l-4 border-l-blue-500 space-y-1">
-          <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Settlement Speed</span>
+          <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+            {isMr ? 'पैसे जमा होण्याचा वेग' : isHi ? 'भुगतान गति' : 'Settlement Speed'}
+          </span>
           <div className="text-3xl font-black text-blue-600">2.1 Days</div>
           <p className="text-xs text-slate-600 font-medium">Automated Smart Contract payouts vs 18.3 days traditional mandi delay.</p>
         </div>
 
         <div className="ab-card p-5 border-l-4 border-l-amber-500 space-y-1">
-          <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Logistics Savings</span>
+          <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+            {isMr ? 'वाहतूक खर्च बचत' : isHi ? 'भाड़ा बचत' : 'Logistics Savings'}
+          </span>
           <div className="text-3xl font-black text-amber-600">40 - 60%</div>
           <p className="text-xs text-slate-600 font-medium">Freight cost reduction through hyper-local shared truck pooling.</p>
         </div>
 
         <div className="ab-card p-5 border-l-4 border-l-purple-500 space-y-1">
-          <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Rejection Rate</span>
+          <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+            {isMr ? 'माल नकार दर' : isHi ? 'अस्वीकृति दर' : 'Rejection Rate'}
+          </span>
           <div className="text-3xl font-black text-purple-600">0.18%</div>
           <p className="text-xs text-slate-600 font-medium">Zero disputes achieved through tamper-proof AI grading certificates.</p>
         </div>
@@ -157,11 +179,13 @@ export default function GovtShowcase() {
           <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
             {isMr 
               ? 'महाराष्ट्र शासनाने सुरू केलेल्या महाविस्तार-AI द्वारे शेतकऱ्यांना मराठीत हवामान व पीक सल्ला दिला जातो. ॲग्रोब्रिज हा त्यावर एक निर्णय व बाजारपेठ जोडणारा स्तर (Market Linkage Layer) म्हणून काम करतो, ज्यातून शेतकरी थेट योग्य खरेदीदार व वाहतूक निवडू शकतात.'
+              : isHi
+              ? 'महाराष्ट्र सरकार महाविस्तार-AI के माध्यम से कृषि में कृत्रिम बुद्धिमत्ता को बढ़ावा दे रही है। एग्रोब्रिज फसल सलाह के ऊपर एक वाणिज्यिक निर्णय व बाजार जुड़ाव इंजन के रूप में कार्य करता है—ताकि किसान सटीक लाभ ले सकें।'
               : 'The Government of Maharashtra is championing AI in agriculture through MahaVISTAAR-AI. AgroBridge serves as the complementary commercial decision engine on top of agronomic advisories—transforming crop insights into profitable market transactions in Marathi.'
             }
           </p>
           <div className="flex items-center gap-2 text-xs font-bold text-emerald-700">
-            <CheckCircle2 className="w-4 h-4" /> Native Marathi AI Copilot & Voice Synthesis
+            <CheckCircle2 className="w-4 h-4" /> Native Vernacular AI Copilot & Voice Synthesis
           </div>
         </div>
 
@@ -181,6 +205,8 @@ export default function GovtShowcase() {
           <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
             {isMr 
               ? 'शेतकऱ्यांच्या डेटा गोपनीयतेला सर्वोच्च प्राधान्य. डिजिटल वैयक्तिक डेटा संरक्षण कायदा २०२३ (DPDP Act) आणि ॲग्रीस्टॅकच्या मार्गदर्शक तत्त्वांनुसार शेतकऱ्यांच्या संमतीशिवाय डेटा कोणालाही दिला जात नाही.'
+              : isHi
+              ? 'किसानों की डेटा गोपनीयता सर्वोच्च प्राथमिकता है। डिजिटल व्यक्तिगत डेटा संरक्षण अधिनियम 2023 (DPDP Act) और एग्रीस्टैक के खुले ढांचे का पूर्ण पालन। सहमति-आधारित सुरक्षित एपीआई द्वारा डेटा प्रवाह।'
               : 'Adheres strictly to the Digital Personal Data Protection (DPDP) Act 2023 and AgriStack open architecture. Uses anonymized farmer IDs, electronic consent management, and secure API gateways.'
             }
           </p>
@@ -198,7 +224,7 @@ export default function GovtShowcase() {
             Rollout Strategy
           </span>
           <h2 className="text-2xl sm:text-3xl font-black text-slate-800 tracking-tight">
-            {isMr ? 'राज्यव्यापी अंमलबजावणी आराखडा (३ टप्पे)' : '3-Phase State Implementation Roadmap'}
+            {isMr ? 'राज्यव्यापी अंमलबजावणी आराखडा (३ टप्पे)' : isHi ? 'राज्यव्यापी कार्यान्वयन रोडमैप (3 चरण)' : '3-Phase State Implementation Roadmap'}
           </h2>
         </div>
 
@@ -208,15 +234,15 @@ export default function GovtShowcase() {
               <div>
                 <div className="flex justify-between items-center mb-2">
                   <span className="text-xs font-black text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-lg uppercase">
-                    {isMr ? phase.phase_mr : phase.phase}
+                    {isMr ? phase.phase_mr : isHi ? (phase.phase_hi || phase.phase) : phase.phase}
                   </span>
                   <span className="text-xs font-bold text-slate-400">{phase.timeline}</span>
                 </div>
                 <h4 className="font-black text-slate-800 text-lg mb-2">
-                  {isMr ? phase.title_mr : phase.title}
+                  {isMr ? phase.title_mr : isHi ? (phase.title_hi || phase.title) : phase.title}
                 </h4>
                 <p className="text-xs font-medium text-slate-600 leading-relaxed">
-                  {isMr ? phase.desc_mr : phase.desc_en}
+                  {isMr ? phase.desc_mr : isHi ? (phase.desc_hi || phase.desc_en) : phase.desc_en}
                 </p>
               </div>
               <div className="pt-3 border-t border-slate-200 flex items-center justify-between text-xs">
@@ -247,7 +273,7 @@ export default function GovtShowcase() {
               <button
                 key={dKey}
                 onClick={() => setActiveDemo(dKey)}
-                className={`px-4 py-2 rounded-xl text-xs font-bold uppercase transition ${
+                className={`px-4 py-2 rounded-xl text-xs font-bold uppercase transition cursor-pointer ${
                   activeDemo === dKey ? 'bg-emerald-500 text-slate-950 shadow-md' : 'bg-white/10 text-white hover:bg-white/20'
                 }`}
               >
@@ -286,25 +312,25 @@ export default function GovtShowcase() {
             <div className="grid grid-cols-2 gap-3">
               <button 
                 onClick={() => setActiveTab('market_data')}
-                className="py-3 px-4 bg-white/10 hover:bg-white/20 rounded-xl text-xs font-bold text-white transition border border-white/10"
+                className="py-3 px-4 bg-white/10 hover:bg-white/20 rounded-xl text-xs font-bold text-white transition border border-white/10 cursor-pointer"
               >
                 📊 Live Agmarknet Data
               </button>
               <button 
                 onClick={() => setActiveTab('govt_schemes')}
-                className="py-3 px-4 bg-white/10 hover:bg-white/20 rounded-xl text-xs font-bold text-white transition border border-white/10"
+                className="py-3 px-4 bg-white/10 hover:bg-white/20 rounded-xl text-xs font-bold text-white transition border border-white/10 cursor-pointer"
               >
                 🏛️ Maharashtra Schemes
               </button>
               <button 
                 onClick={() => setActiveTab('digital_twin')}
-                className="py-3 px-4 bg-white/10 hover:bg-white/20 rounded-xl text-xs font-bold text-white transition border border-white/10"
+                className="py-3 px-4 bg-white/10 hover:bg-white/20 rounded-xl text-xs font-bold text-white transition border border-white/10 cursor-pointer"
               >
                 🧬 Farmer Digital Twin
               </button>
               <button 
                 onClick={() => setActiveTab('traceability')}
-                className="py-3 px-4 bg-white/10 hover:bg-white/20 rounded-xl text-xs font-bold text-white transition border border-white/10"
+                className="py-3 px-4 bg-white/10 hover:bg-white/20 rounded-xl text-xs font-bold text-white transition border border-white/10 cursor-pointer"
               >
                 📦 Farm-to-Fork QR
               </button>

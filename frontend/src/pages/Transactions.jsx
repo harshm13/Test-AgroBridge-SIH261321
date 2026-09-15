@@ -11,6 +11,7 @@ import BlockchainLedgerModal from '../components/BlockchainLedgerModal';
 export default function Transactions() {
   const { lang } = useContext(AppContext);
   const isMr = lang === 'mr';
+  const isHi = lang === 'hi';
 
   const [txs, setTxs] = useState([
     { id: 'TX-9982', buyer: 'FreshMart Inc.', amount: 73800, date: '12 Oct 2026', status: 'Completed', escrow: false, utr: 'IMPS40918274' },
@@ -62,11 +63,14 @@ export default function Transactions() {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
           <h1 className="text-3xl sm:text-4xl font-black text-slate-800 flex items-center gap-3 tracking-tight">
-            <CreditCard className="w-10 h-10 text-emerald-600" /> {isMr ? 'व्यवहार, एस्क्रो व ब्लॉकचेन' : 'Transactions, Escrow & Blockchain'}
+            <CreditCard className="w-10 h-10 text-emerald-600" /> 
+            {isMr ? 'व्यवहार, एस्क्रो व ब्लॉकचेन' : isHi ? 'लेन-देन, एस्क्रो व ब्लॉकचेन' : 'Transactions, Escrow & Blockchain'}
           </h1>
           <p className="text-slate-500 font-medium mt-2">
             {isMr 
               ? 'स्मार्ट कॉन्ट्रॅक्टद्वारे सुरक्षित एस्क्रो खात्यातून थेट बँक खात्यात पैसे जमा करा.'
+              : isHi
+              ? 'स्मार्ट कॉन्ट्रैक्ट द्वारा सुरक्षित एस्क्रो से सीधे बैंक खाते में भुगतान प्राप्त करें और ब्लॉकचेन रिकॉर्ड देखें।'
               : 'Manage your automated smart contract payouts and view immutable blockchain records.'
             }
           </p>
@@ -77,7 +81,7 @@ export default function Transactions() {
             className="bg-slate-900 hover:bg-black text-white px-4 py-2.5 rounded-xl text-xs font-bold flex items-center gap-2 transition shadow-md cursor-pointer"
           >
             <Link2 className="w-4 h-4 text-emerald-400" />
-            {isMr ? 'ब्लॉकचेन लेजर पहा (२.१ दिवस)' : 'View Blockchain Ledger'}
+            {isMr ? 'ब्लॉकचेन लेजर पहा (२.१ दिवस)' : isHi ? 'ब्लॉकचेन लेजर देखें (2.1 दिन)' : 'View Blockchain Ledger'}
           </button>
           <button 
               onClick={handleDownloadStatement}
@@ -85,11 +89,11 @@ export default function Transactions() {
           >
               {downloadSuccess ? (
                   <>
-                      <Check className="w-4 h-4 text-emerald-600" /> {isMr ? 'डाउनलोड झाले!' : 'Downloaded!'}
+                      <Check className="w-4 h-4 text-emerald-600" /> {isMr ? 'डाउनलोड झाले!' : isHi ? 'डाउनलोड हुआ!' : 'Downloaded!'}
                   </>
               ) : (
                   <>
-                      <FileText className="w-4 h-4" /> {isMr ? 'स्टेटमेंट' : 'Statement'}
+                      <FileText className="w-4 h-4" /> {isMr ? 'स्टेटमेंट' : isHi ? 'स्टेटमेंट' : 'Statement'}
                   </>
               )}
           </button>
@@ -110,6 +114,8 @@ export default function Transactions() {
           <p className="text-xs font-medium text-slate-300 max-w-2xl">
             {isMr 
               ? 'पारंपारिक बाजार समितीतील १८.३ दिवसांच्या अडत विलंबाऐवजी ॲग्रोब्रिज ब्लॉकचेन स्मार्ट कॉन्ट्रॅक्टद्वारे सरासरी २.१ दिवसांत पेमेंट पूर्ण होते.'
+              : isHi
+              ? 'पारंपरिक मंडी के 18.3 दिनों के चेक विलंब के स्थान पर एग्रोब्रिज ब्लॉकचेन स्मार्ट कॉन्ट्रैक्ट द्वारा औसतन 2.1 दिनों में भुगतान सीधे बैंक खाते में जमा होता है।'
               : 'Blockchain smart contracts slash settlement cycles from 18.3 days (mandi cheque delays) down to just 2.1 days, driving a documented +38.4% increase in net farmer income.'
             }
           </p>
@@ -118,7 +124,7 @@ export default function Transactions() {
           onClick={() => setShowBlockchainModal(true)}
           className="bg-emerald-400 hover:bg-emerald-300 text-emerald-950 font-black px-4 py-2 rounded-xl text-xs flex items-center gap-1.5 shrink-0 transition"
         >
-          {isMr ? 'ब्लॉकचेन ब्लॉक तपासा' : 'Inspect Block #1'} <ArrowRight className="w-3.5 h-3.5" />
+          {isMr ? 'ब्लॉकचेन ब्लॉक तपासा' : isHi ? 'ब्लॉकचेन ब्लॉक जांचें' : 'Inspect Block #1'} <ArrowRight className="w-3.5 h-3.5" />
         </button>
       </div>
 
@@ -126,7 +132,9 @@ export default function Transactions() {
         
         {/* Left Column: Transactions List */}
         <div className="lg:col-span-2 space-y-6">
-          <h3 className="font-bold text-slate-800 text-lg flex items-center gap-2">Recent History</h3>
+          <h3 className="font-bold text-slate-800 text-lg flex items-center gap-2">
+            {isMr ? 'अलीकडील व्यवहार' : isHi ? 'हाल के लेन-देन' : 'Recent History'}
+          </h3>
           
           {txs.map((tx, idx) => (
             <motion.div 
@@ -145,11 +153,11 @@ export default function Transactions() {
                     <h3 className="font-bold text-slate-800 text-lg">{tx.buyer}</h3>
                     {tx.escrow ? (
                       <span className="ab-status-warning shadow-sm flex items-center gap-1">
-                        <AlertCircle className="w-3.5 h-3.5"/> {tx.status}
+                        <AlertCircle className="w-3.5 h-3.5"/> {isMr ? 'एस्क्रोमध्ये सुरक्षित' : isHi ? 'एस्क्रो में सुरक्षित' : tx.status}
                       </span>
                     ) : (
                       <span className="ab-status-success shadow-sm flex items-center gap-1">
-                        <CheckCircle2 className="w-3.5 h-3.5"/> {tx.status}
+                        <CheckCircle2 className="w-3.5 h-3.5"/> {isMr ? 'खात्यात जमा' : isHi ? 'खाते में जमा' : tx.status}
                       </span>
                     )}
                   </div>
@@ -164,18 +172,20 @@ export default function Transactions() {
               </div>
 
               <div className="p-6 bg-slate-50/50 flex flex-col justify-center items-center sm:items-end min-w-[220px]">
-                <span className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Net Amount</span>
+                <span className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">
+                  {isMr ? 'निव्वळ रक्कम' : isHi ? 'शुद्ध राशि' : 'Net Amount'}
+                </span>
                 <span className="text-2xl font-black text-emerald-700">₹{tx.amount.toLocaleString()}</span>
                 {tx.escrow ? (
                     <button 
                         onClick={() => handleOpenReleaseModal(tx)}
                         className="mt-4 w-full sm:w-auto ab-primary-btn !py-2.5 !px-5 text-xs shadow-md shadow-emerald-500/20 active:scale-95 transition cursor-pointer flex items-center justify-center gap-1.5"
                     >
-                        <Lock className="w-3.5 h-3.5 text-amber-300" /> Release Funds
+                        <Lock className="w-3.5 h-3.5 text-amber-300" /> {isMr ? 'खात्यात जमा करा' : isHi ? 'खाते में ट्रांसफर करें' : 'Release Funds'}
                     </button>
                 ) : (
                     <span className="mt-3 text-xs font-bold text-emerald-600 bg-emerald-100/60 px-3 py-1 rounded-lg flex items-center gap-1">
-                        <Check className="w-3.5 h-3.5" /> Payout Settled
+                        <Check className="w-3.5 h-3.5" /> {isMr ? 'पेमेंट पूर्ण' : isHi ? 'भुगतान पूर्ण' : 'Payout Settled'}
                     </span>
                 )}
               </div>
@@ -198,22 +208,29 @@ export default function Transactions() {
                     <div className="p-3 bg-white/10 rounded-xl backdrop-blur-md border border-white/20">
                         <ShieldCheck className="w-8 h-8 text-emerald-300" />
                     </div>
-                    <h3 className="font-black text-white text-xl tracking-tight">Escrow Protection</h3>
+                    <h3 className="font-black text-white text-xl tracking-tight">
+                      {isMr ? 'एस्क्रो सुरक्षा वॉल्ट' : isHi ? 'एस्क्रो सुरक्षा वॉल्ट' : 'Escrow Protection'}
+                    </h3>
                 </div>
                 
                 <p className="text-sm text-emerald-50/80 leading-relaxed font-medium mb-8">
-                  When a buyer makes an offer, their funds are locked securely in the AgroBridge Escrow. Once crop quality and delivery are confirmed, you can instantly release funds to your bank account.
+                  {isMr 
+                    ? 'खरेदीदाराने खरेदी आदेश देताच रक्कम एस्क्रोमध्ये सुरक्षित ठेवली जाते. माल पोहोचल्यावर व गुणवत्ता तपासणी होताच थेट बँक खात्यात पैसे जमा होतात.'
+                    : isHi
+                    ? 'जब कोई खरीदार प्रस्ताव स्वीकार करता है, तो धनराशि एग्रोब्रिज एस्क्रो में सुरक्षित जमा हो जाती है। फसल डिलीवरी व ग्रेडिंग की पुष्टि होते ही राशि आपके खाते में ट्रांसफर हो जाती है।'
+                    : 'When a buyer makes an offer, their funds are locked securely in the AgroBridge Escrow. Once crop quality and delivery are confirmed, you can instantly release funds to your bank account.'}
                 </p>
                 
                 <div className="bg-black/20 p-5 rounded-2xl border border-white/10 backdrop-blur-md shadow-inner">
                   <span className="block text-xs font-bold text-emerald-200/80 uppercase tracking-widest mb-1 flex items-center gap-2">
-                      <div className={`w-2 h-2 rounded-full ${totalEscrow > 0 ? 'bg-amber-400 animate-pulse' : 'bg-emerald-400'}`}></div> Total Protected
+                      <div className={`w-2 h-2 rounded-full ${totalEscrow > 0 ? 'bg-amber-400 animate-pulse' : 'bg-emerald-400'}`}></div> 
+                      {isMr ? 'एकूण सुरक्षित रक्कम' : isHi ? 'कुल सुरक्षित राशि' : 'Total Protected'}
                   </span>
                   <span className="text-4xl font-black text-white tracking-tight">₹{totalEscrow.toLocaleString()}</span>
                 </div>
 
                 <div className="mt-6 flex items-center gap-2 text-xs font-bold text-emerald-200/60 uppercase tracking-widest justify-center">
-                    <ShieldCheck className="w-4 h-4 text-emerald-300" /> Bank-Grade Instant Settlement
+                    <ShieldCheck className="w-4 h-4 text-emerald-300" /> {isMr ? 'बँक-स्तरीय सुरक्षित त्वरित जमा' : isHi ? 'बैंक-स्तरीय त्वरित भुगतान' : 'Bank-Grade Instant Settlement'}
                 </div>
             </div>
           </motion.div>
@@ -241,9 +258,11 @@ export default function Transactions() {
                         </button>
 
                         <div className="flex items-center gap-2 text-amber-300 text-xs font-black uppercase tracking-widest mb-1">
-                            <ShieldCheck className="w-4 h-4" /> Escrow Fund Transfer
+                            <ShieldCheck className="w-4 h-4" /> {isMr ? 'एस्क्रो थेट बँक ट्रान्सफर' : isHi ? 'एस्क्रो डायरेक्ट बैंक ट्रांसफर' : 'Escrow Fund Transfer'}
                         </div>
-                        <h2 className="text-2xl font-black tracking-tight">Release Escrow Payout</h2>
+                        <h2 className="text-2xl font-black tracking-tight">
+                          {isMr ? 'बँक खात्यात पैसे जमा करा' : isHi ? 'खाते में भुगतान प्राप्त करें' : 'Release Escrow Payout'}
+                        </h2>
                         <p className="text-emerald-100/80 text-xs mt-1 font-medium">Contract ID: {releasingTx.id} • Buyer: {releasingTx.buyer}</p>
                     </div>
 
@@ -252,30 +271,32 @@ export default function Transactions() {
                         <div className="p-6 space-y-6">
                             
                             <div className="bg-emerald-50 border border-emerald-200 p-5 rounded-2xl text-center">
-                                <span className="block text-xs font-black text-emerald-700 uppercase tracking-widest mb-1">Total Payout Amount</span>
+                                <span className="block text-xs font-black text-emerald-700 uppercase tracking-widest mb-1">
+                                  {isMr ? 'जमा होणारी एकूण रक्कम' : isHi ? 'जमा की जाने वाली कुल राशि' : 'Total Payout Amount'}
+                                </span>
                                 <span className="text-4xl font-black text-emerald-800">₹{releasingTx.amount.toLocaleString()}</span>
                             </div>
 
                             {/* Verification Checks */}
                             <div className="space-y-2.5 bg-slate-50 p-4 rounded-2xl border border-slate-200 text-xs font-bold text-slate-700">
                                 <div className="flex justify-between items-center">
-                                    <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-600" /> Crop Delivery Status</span>
-                                    <span className="text-emerald-700 font-extrabold">Verified at Nashik Mandi</span>
+                                    <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-600" /> {isMr ? 'माल पोहोच स्थिती' : isHi ? 'फसल डिलीवरी स्थिति' : 'Crop Delivery Status'}</span>
+                                    <span className="text-emerald-700 font-extrabold">{isMr ? 'नाशिक मंडी प्रमाणित' : isHi ? 'नासिक मंडी सत्यापित' : 'Verified at Nashik Mandi'}</span>
                                 </div>
                                 <div className="flex justify-between items-center">
-                                    <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-600" /> Quality Audit</span>
-                                    <span className="text-emerald-700 font-extrabold">Grade A (Zero Moisture Rot)</span>
+                                    <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-600" /> {isMr ? 'गुणवत्ता तपासणी' : isHi ? 'गुणवत्ता ऑडिट' : 'Quality Audit'}</span>
+                                    <span className="text-emerald-700 font-extrabold">{isMr ? 'ग्रेड A (निर्यात दर्जा)' : isHi ? 'ग्रेड A (सड़न मुक्त)' : 'Grade A (Zero Moisture Rot)'}</span>
                                 </div>
                                 <div className="flex justify-between items-center">
-                                    <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-600" /> Escrow Deposit Guarantee</span>
-                                    <span className="text-emerald-700 font-extrabold">100% Secured</span>
+                                    <span className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-600" /> {isMr ? 'एस्क्रो हमी' : isHi ? 'एस्क्रो गारंटी' : 'Escrow Deposit Guarantee'}</span>
+                                    <span className="text-emerald-700 font-extrabold">100% {isMr ? 'सुरक्षित' : isHi ? 'सुरक्षित' : 'Secured'}</span>
                                 </div>
                             </div>
 
                             {/* Destination Bank Account Selection */}
                             <div>
                                 <label className="block text-xs font-black text-slate-500 uppercase tracking-wider mb-2">
-                                    Select Destination Bank Account
+                                    {isMr ? 'जमा होणारे बँक खाते निवडा' : isHi ? 'भुगतान प्राप्त करने वाला बैंक खाता चुनें' : 'Select Destination Bank Account'}
                                 </label>
                                 <div className="space-y-2">
                                     <button 
@@ -314,7 +335,8 @@ export default function Transactions() {
                                 onClick={handleConfirmRelease}
                                 className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-black py-4 px-6 rounded-2xl shadow-xl shadow-emerald-600/30 transition-all flex items-center justify-center gap-2 text-base cursor-pointer"
                             >
-                                <ArrowRight className="w-5 h-5" /> Transfer ₹{releasingTx.amount.toLocaleString()} to Bank Now
+                                <ArrowRight className="w-5 h-5" /> 
+                                {isMr ? `₹${releasingTx.amount.toLocaleString()} त्वरित खात्यात जमा करा` : isHi ? `₹${releasingTx.amount.toLocaleString()} तुरंत बैंक खाते में ट्रांसफर करें` : `Transfer ₹${releasingTx.amount.toLocaleString()} to Bank Now`}
                             </button>
 
                         </div>
@@ -328,8 +350,12 @@ export default function Transactions() {
                                 <Landmark className="w-8 h-8 text-emerald-800 absolute" />
                             </div>
                             <div>
-                                <h3 className="text-xl font-black text-slate-800">Initiating IMPS Bank Transfer...</h3>
-                                <p className="text-slate-500 text-sm font-medium mt-1">Releasing ₹{releasingTx.amount.toLocaleString()} from AgroBridge Escrow Vault.</p>
+                                <h3 className="text-xl font-black text-slate-800">
+                                  {isMr ? 'IMPS बँक हस्तांतरण सुरू आहे...' : isHi ? 'IMPS बैंक ट्रांसफर शुरू हो रहा है...' : 'Initiating IMPS Bank Transfer...'}
+                                </h3>
+                                <p className="text-slate-500 text-sm font-medium mt-1">
+                                  {isMr ? `एस्क्रो खात्यातून ₹${releasingTx.amount.toLocaleString()} ट्रान्सफर होत आहेत.` : isHi ? `एस्क्रो से ₹${releasingTx.amount.toLocaleString()} ट्रांसफर हो रहे हैं।` : `Releasing ₹${releasingTx.amount.toLocaleString()} from AgroBridge Escrow Vault.`}
+                                </p>
                             </div>
                         </div>
                     )}
@@ -347,11 +373,13 @@ export default function Transactions() {
 
                             <div>
                                 <span className="bg-emerald-100 text-emerald-800 font-black text-[10px] uppercase px-3 py-1 rounded-full tracking-widest inline-block mb-2">
-                                    Instant Settlement Completed
+                                    {isMr ? 'पेमेंट यशस्वीरित्या पूर्ण' : isHi ? 'भुगतान सफलतापूर्वक संपन्न' : 'Instant Settlement Completed'}
                                 </span>
-                                <h3 className="text-2xl font-black text-slate-900">₹{releasingTx.amount.toLocaleString()} Transferred!</h3>
+                                <h3 className="text-2xl font-black text-slate-900">
+                                  {isMr ? `₹${releasingTx.amount.toLocaleString()} खात्यात जमा झाले!` : isHi ? `₹${releasingTx.amount.toLocaleString()} खाते में ट्रांसफर हुए!` : `₹${releasingTx.amount.toLocaleString()} Transferred!`}
+                                </h3>
                                 <p className="text-slate-600 text-sm font-medium mt-2">
-                                    Funds have been credited directly to your <strong>{selectedBank === 'sbi' ? 'State Bank of India' : 'Bank of Maharashtra'}</strong> account.
+                                    {isMr ? 'पैसे थेट आपल्या बँक खात्यात जमा झाले आहेत.' : isHi ? 'धनराशि सीधे आपके बैंक खाते में जमा कर दी गई है।' : `Funds have been credited directly to your ${selectedBank === 'sbi' ? 'State Bank of India' : 'Bank of Maharashtra'} account.`}
                                 </p>
                             </div>
 
@@ -362,15 +390,15 @@ export default function Transactions() {
                                 </div>
                                 <div className="flex justify-between">
                                     <span className="text-slate-400">Status:</span>
-                                    <span className="text-emerald-700 font-extrabold">Settled to Bank (0% Fee)</span>
+                                    <span className="text-emerald-700 font-extrabold">{isMr ? 'थेट बँक खात्यात (०% अडत शुल्क)' : isHi ? 'सीधे बैंक खाते में (0% आढ़त शुल्क)' : 'Settled to Bank (0% Fee)'}</span>
                                 </div>
                             </div>
 
                             <button
                                 onClick={() => setReleasingTx(null)}
-                                className="w-full bg-slate-900 hover:bg-black text-white font-bold py-3.5 px-4 rounded-xl text-sm transition"
+                                className="w-full bg-slate-900 hover:bg-black text-white font-bold py-3.5 px-4 rounded-xl text-sm transition cursor-pointer"
                             >
-                                Close & View Updated Ledger
+                                {isMr ? 'बंद करा व लेजर पहा' : isHi ? 'बंद करें व लेजर देखें' : 'Close & View Updated Ledger'}
                             </button>
                         </div>
                     )}

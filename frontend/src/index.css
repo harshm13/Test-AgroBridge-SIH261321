@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=Mukta:wght@300;400;500;600;700;800&display=swap');
 
 @import "tailwindcss";
 
@@ -116,6 +116,104 @@ h2 {
 
 p {
   line-height: 1.6;
+}
+
+/* =========================================================
+   LANGUAGE & DYNAMIC FONT SYSTEM (react-i18next)
+   ========================================================= */
+
+/* Base font classes */
+.font-en {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+}
+
+.font-hi {
+  font-family: 'Mukta', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.65;
+}
+
+.font-mr {
+  font-family: 'Mukta', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.65;
+}
+
+/* Document body application for website-wide dynamic font switching */
+body.font-en {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+}
+
+body.font-en h1,
+body.font-en h2,
+body.font-en h3,
+body.font-en h4,
+body.font-en h5,
+body.font-en h6 {
+  font-family: 'Inter', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* Devanagari (Hindi & Marathi) font & line-height adjustments to avoid matra clipping */
+body.font-hi,
+body.font-mr {
+  font-family: 'Mukta', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.65;
+}
+
+body.font-hi h1,
+body.font-hi h2,
+body.font-hi h3,
+body.font-hi h4,
+body.font-hi h5,
+body.font-hi h6,
+body.font-mr h1,
+body.font-mr h2,
+body.font-mr h3,
+body.font-mr h4,
+body.font-mr h5,
+body.font-mr h6,
+.font-hi h1,
+.font-hi h2,
+.font-hi h3,
+.font-hi h4,
+.font-hi h5,
+.font-hi h6,
+.font-mr h1,
+.font-mr h2,
+.font-mr h3,
+.font-mr h4,
+.font-mr h5,
+.font-mr h6 {
+  font-family: 'Mukta', sans-serif;
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+
+body.font-hi p,
+body.font-mr p,
+.font-hi p,
+.font-mr p {
+  line-height: 1.7;
+}
+
+body.font-hi button,
+body.font-hi input,
+body.font-hi select,
+body.font-hi textarea,
+body.font-mr button,
+body.font-mr input,
+body.font-mr select,
+body.font-mr textarea,
+.font-hi button,
+.font-hi input,
+.font-hi select,
+.font-hi textarea,
+.font-mr button,
+.font-mr input,
+.font-mr select,
+.font-mr textarea {
+  font-family: 'Mukta', sans-serif;
 }
 
 /* =========================================================

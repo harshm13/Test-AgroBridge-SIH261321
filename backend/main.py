@@ -28,6 +28,7 @@ app.add_middleware(
 
 # Register your API endpoints
 app.include_router(predictions.router)
+app.include_router(predictions.recommendation_router)
 app.include_router(chatbot.router)
 app.include_router(grading.router)
 app.include_router(pooling.router)

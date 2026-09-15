@@ -6,6 +6,7 @@ import { X, ShieldCheck, Link2, CheckCircle2, Clock, Zap, ArrowRight, FileCheck,
 export default function BlockchainLedgerModal({ isOpen, onClose, blockData }) {
   const { lang } = useContext(AppContext);
   const isMr = lang === 'mr';
+  const isHi = lang === 'hi';
 
   if (!isOpen) return null;
 
@@ -52,7 +53,7 @@ export default function BlockchainLedgerModal({ isOpen, onClose, blockData }) {
             <div>
               <div className="flex items-center gap-2">
                 <h2 className="text-xl sm:text-2xl font-black text-slate-800">
-                  {isMr ? 'ब्लॉकचेन स्मार्ट कॉन्ट्रॅक्ट लेजर' : 'Blockchain Smart Contract Ledger'}
+                  {isMr ? 'ब्लॉकचेन स्मार्ट कॉन्ट्रॅक्ट लेजर' : isHi ? 'ब्लॉकचेन स्मार्ट कॉन्ट्रैक्ट बहीखाता (लेज़र)' : 'Blockchain Smart Contract Ledger'}
                 </h2>
                 <span className="bg-blue-100 text-blue-800 text-[10px] font-black uppercase px-2 py-0.5 rounded-full">
                   PoAA Verified
@@ -75,27 +76,29 @@ export default function BlockchainLedgerModal({ isOpen, onClose, blockData }) {
         <div className="grid grid-cols-2 gap-3 mb-6">
           <div className="bg-emerald-50 border border-emerald-200 p-4 rounded-2xl">
             <span className="block text-[11px] font-bold text-emerald-800 uppercase tracking-wider mb-1">
-              {isMr ? 'पैसे मिळण्याचा कालावधी' : 'Settlement Cycle'}
+              {isMr ? 'पैसे मिळण्याचा कालावधी' : isHi ? 'भुगतान निपटान चक्र' : 'Settlement Cycle'}
             </span>
             <div className="flex items-baseline gap-2">
               <span className="text-3xl font-black text-emerald-700">2.1 Days</span>
-              <span className="text-xs text-slate-400 line-through font-bold">18.3 Days Mandi</span>
+              <span className="text-xs text-slate-400 line-through font-bold">
+                {isMr ? '१८.३ दिवस मंडी' : isHi ? '18.3 दिन मंडी' : '18.3 Days Mandi'}
+              </span>
             </div>
             <span className="text-[10px] font-bold text-emerald-700 block mt-1">
-              {isMr ? '⚡ ८.७ पट जलद थेट बँक खात्यात जमा' : '⚡ 8.7x Faster Instant Bank Payout'}
+              {isMr ? '⚡ ८.७ पट जलद थेट बँक खात्यात जमा' : isHi ? '⚡ 8.7x तेज़ सीधे बैंक खाते में भुगतान' : '⚡ 8.7x Faster Instant Bank Payout'}
             </span>
           </div>
 
           <div className="bg-blue-50 border border-blue-200 p-4 rounded-2xl">
             <span className="block text-[11px] font-bold text-blue-800 uppercase tracking-wider mb-1">
-              {isMr ? 'उत्पन्नात सरासरी वाढ' : 'Farmer Income Growth'}
+              {isMr ? 'उत्पन्नात सरासरी वाढ' : isHi ? 'किसान की आय में वृद्धि' : 'Farmer Income Growth'}
             </span>
             <div className="flex items-baseline gap-2">
               <span className="text-3xl font-black text-blue-700">+38.4%</span>
               <span className="text-xs text-slate-500 font-bold">Net Realization</span>
             </div>
             <span className="text-[10px] font-bold text-blue-700 block mt-1">
-              {isMr ? '🛡️ अडत कपातीशिवाय शून्य डीफॉल्ट' : '🛡️ Zero Commission Arhatiya Default'}
+              {isMr ? '🛡️ अडत कपातीशिवाय शून्य डीफॉल्ट' : isHi ? '🛡️ आढ़तिया कमीशन कटौती के बिना शून्य डिफ़ॉल्ट' : '🛡️ Zero Commission Arhatiya Default'}
             </span>
           </div>
         </div>
@@ -129,19 +132,19 @@ export default function BlockchainLedgerModal({ isOpen, onClose, blockData }) {
         {/* Transaction Summary */}
         <div className="bg-slate-50 rounded-2xl p-4 border border-slate-200 mb-6 text-xs space-y-2">
           <div className="flex justify-between font-medium text-slate-700">
-            <span>{isMr ? 'शेतकरी' : 'Farmer'}:</span>
+            <span>{isMr ? 'शेतकरी' : isHi ? 'किसान' : 'Farmer'}:</span>
             <span className="font-bold text-slate-900">{block.transaction.farmer}</span>
           </div>
           <div className="flex justify-between font-medium text-slate-700">
-            <span>{isMr ? 'खरेदीदार' : 'Buyer'}:</span>
+            <span>{isMr ? 'खरेदीदार' : isHi ? 'खरीदार' : 'Buyer'}:</span>
             <span className="font-bold text-slate-900">{block.transaction.buyer}</span>
           </div>
           <div className="flex justify-between font-medium text-slate-700">
-            <span>{isMr ? 'पीक व प्रमाण' : 'Commodity & Volume'}:</span>
+            <span>{isMr ? 'पीक व प्रमाण' : isHi ? 'फसल व मात्रा' : 'Commodity & Volume'}:</span>
             <span className="font-bold text-slate-900">{block.transaction.commodity} ({block.transaction.quantity})</span>
           </div>
           <div className="flex justify-between font-bold text-slate-800 pt-2 border-t border-slate-200 text-sm">
-            <span>{isMr ? 'सुरक्षित रक्कम' : 'Total Escrow Protected'}:</span>
+            <span>{isMr ? 'सुरक्षित रक्कम' : isHi ? 'कुल सुरक्षित एस्क्रो राशि' : 'Total Escrow Protected'}:</span>
             <span className="text-emerald-700 font-black">₹{block.transaction.amount.toLocaleString()}</span>
           </div>
         </div>
@@ -150,7 +153,7 @@ export default function BlockchainLedgerModal({ isOpen, onClose, blockData }) {
           onClick={onClose}
           className="w-full ab-primary-btn !py-3.5 text-center font-bold flex items-center justify-center gap-2 cursor-pointer"
         >
-          {isMr ? 'बंद करा' : 'Close Blockchain Receipt'}
+          {isMr ? 'बंद करा' : isHi ? 'रसीद बंद करें' : 'Close Blockchain Receipt'}
         </button>
       </motion.div>
     </div>

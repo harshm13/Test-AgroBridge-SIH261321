@@ -2,8 +2,12 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-# This creates a local SQLite file in your db folder
-SQLALCHEMY_DATABASE_URL = "sqlite:///./db/agrobridge.db"
+import os
+
+# Dynamically resolve absolute path to agrobridge.db adjacent to this file
+_BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+_DB_PATH = os.path.join(_BASE_DIR, "agrobridge.db")
+SQLALCHEMY_DATABASE_URL = f"sqlite:///{_DB_PATH}"
 
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}

@@ -9,6 +9,7 @@ import { motion } from 'framer-motion';
 export default function DigitalTwin() {
   const { lang, t, farmerProfile } = useContext(AppContext);
   const isMr = lang === 'mr';
+  const isHi = lang === 'hi';
 
   // Digital Twin state
   const [holdingDays, setHoldingDays] = useState(7);
@@ -46,11 +47,13 @@ export default function DigitalTwin() {
               <Dna className="w-3.5 h-3.5" /> Innovation Feature • Farmer Digital Twin
             </div>
             <h1 className="text-3xl sm:text-4xl font-black tracking-tight">
-              {isMr ? 'शेतकरी डिजिटल मॉडेल (Farmer Digital Twin)' : 'Farmer Digital Twin Engine'}
+              {isMr ? 'शेतकरी डिजिटल मॉडेल (Farmer Digital Twin)' : isHi ? 'किसान डिजिटल ट्विन (Farmer Digital Twin)' : 'Farmer Digital Twin Engine'}
             </h1>
             <p className="text-indigo-100/80 font-medium mt-2 max-w-2xl text-sm sm:text-base">
               {isMr 
                 ? `एक व्हर्च्युअल मॉडेल जे तुमची जमीन, मातीचा प्रकार, कांदा चाळ साठवणूक आणि पैशांची निकड समजून वैयक्तिक सल्ला देते.`
+                : isHi
+                ? `एक डिजिटल सिमुलेशन जो ${farmerName} के खेत के मापदंडों (मिट्टी, प्याज भंडारण व वित्तीय तरलता) को समझकर सटीक निर्णय देता है।`
                 : `A virtual simulation of ${farmerName}'s physical farm parameters (soil chemistry, Kanda Chawl storage, and working capital) for zero-distress selling.`
               }
             </p>
@@ -58,11 +61,11 @@ export default function DigitalTwin() {
 
           <div className="bg-white/10 backdrop-blur-md border border-white/20 p-5 rounded-2xl text-center shrink-0">
             <span className="text-xs uppercase font-bold text-indigo-200 tracking-wider block">
-              {isMr ? 'डिजिटल आरोग्य निर्देशांक' : 'Twin Fidelity Score'}
+              {isMr ? 'डिजिटल आरोग्य निर्देशांक' : isHi ? 'ट्विन फिडेलिटी स्कोर' : 'Twin Fidelity Score'}
             </span>
             <span className="text-4xl font-black text-emerald-400 block my-1">96 / 100</span>
             <span className="text-[11px] font-bold text-white/80 bg-indigo-800/60 px-2.5 py-1 rounded-full inline-block">
-              {isMr ? 'मृदा व चाळ मॅपिंग पूर्ण' : 'Physical Farm Synced'}
+              {isMr ? 'मृदा व चाळ मॅपिंग पूर्ण' : isHi ? 'खेत व भंडारण सिंक' : 'Physical Farm Synced'}
             </span>
           </div>
         </div>
@@ -75,12 +78,12 @@ export default function DigitalTwin() {
         <div className="ab-card p-5 border-t-4 border-t-amber-500 space-y-3">
           <div className="flex justify-between items-center">
             <span className="text-xs font-black uppercase text-amber-700 tracking-wider">
-              {isMr ? 'मातीचा प्रकार' : 'Soil Profile'}
+              {isMr ? 'मातीचा प्रकार' : isHi ? 'मिट्टी का प्रकार' : 'Soil Profile'}
             </span>
             <Sprout className="w-5 h-5 text-amber-600" />
           </div>
           <div className="text-base font-black text-slate-800">
-            {isMr ? 'काळी कसदार रेगूर जमीन' : 'Black Regur Soil'}
+            {isMr ? 'काळी कसदार रेगूर जमीन' : isHi ? 'काली उपजाऊ रेगुर मिट्टी' : 'Black Regur Soil'}
           </div>
           <div className="space-y-1 text-xs font-semibold text-slate-500">
             <div>pH: <span className="text-slate-800">7.4 (Optimal Alkaline)</span></div>
@@ -88,7 +91,7 @@ export default function DigitalTwin() {
             <div>Organic Carbon: <span className="text-slate-800">0.68%</span></div>
           </div>
           <span className="inline-block text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">
-            High Moisture Retention
+            {isMr ? 'ओलावा टिकवणारी जमीन' : isHi ? 'उच्च नमी प्रतिधारण' : 'High Moisture Retention'}
           </span>
         </div>
 
@@ -96,20 +99,20 @@ export default function DigitalTwin() {
         <div className="ab-card p-5 border-t-4 border-t-blue-500 space-y-3">
           <div className="flex justify-between items-center">
             <span className="text-xs font-black uppercase text-blue-700 tracking-wider">
-              {isMr ? 'सिंचन सुविधा' : 'Water Assets'}
+              {isMr ? 'सिंचन सुविधा' : isHi ? 'सिंचाई परिसंपत्ति' : 'Water Assets'}
             </span>
             <Droplets className="w-5 h-5 text-blue-600" />
           </div>
           <div className="text-base font-black text-slate-800">
-            {isMr ? 'सौर ठिबक सिंचन' : 'Solar Drip Irrigation'}
+            {isMr ? 'सौर ठिबक सिंचन' : isHi ? 'सौर ड्रिप सिंचाई' : 'Solar Drip Irrigation'}
           </div>
           <div className="space-y-1 text-xs font-semibold text-slate-500">
-            <div>Source: <span className="text-slate-800">Open Well + Farm Pond</span></div>
-            <div>Availability: <span className="text-slate-800">12 hrs/day</span></div>
-            <div>Subsidy: <span className="text-emerald-700 font-bold">MahaDBT 80%</span></div>
+            <div>Source: <span className="text-slate-800">{isMr ? 'विहीर + शेततळे' : isHi ? 'कुआं + खेत तालाब' : 'Open Well + Farm Pond'}</span></div>
+            <div>Availability: <span className="text-slate-800">{isMr ? '१२ तास/दिवस' : isHi ? '12 घंटे/दिन' : '12 hrs/day'}</span></div>
+            <div>Subsidy: <span className="text-emerald-700 font-bold">{isMr ? 'महाडीबीटी ८०%' : isHi ? 'महाडीबीटी 80%' : 'MahaDBT 80%'}</span></div>
           </div>
           <span className="inline-block text-[10px] font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded">
-            Drought Resilient
+            {isMr ? 'दुष्काळ प्रतिकारक' : isHi ? 'सूखा प्रतिरोधी' : 'Drought Resilient'}
           </span>
         </div>
 
@@ -117,20 +120,20 @@ export default function DigitalTwin() {
         <div className="ab-card p-5 border-t-4 border-t-emerald-500 space-y-3">
           <div className="flex justify-between items-center">
             <span className="text-xs font-black uppercase text-emerald-700 tracking-wider">
-              {isMr ? 'चाळ साठवणूक' : 'Storage Asset'}
+              {isMr ? 'चाळ साठवणूक' : isHi ? 'भंडारण ढांचा' : 'Storage Asset'}
             </span>
             <Warehouse className="w-5 h-5 text-emerald-600" />
           </div>
           <div className="text-base font-black text-slate-800">
-            {isMr ? 'हवेशीर कांदा चाळ' : 'Ventilated Kanda Chawl'}
+            {isMr ? 'हवेशीर कांदा चाळ' : isHi ? 'हवादार प्याज चाळ' : 'Ventilated Kanda Chawl'}
           </div>
           <div className="space-y-1 text-xs font-semibold text-slate-500">
-            <div>Capacity: <span className="text-slate-800">150 Quintals</span></div>
-            <div>Holding Limit: <span className="text-slate-800">Up to 60 Days</span></div>
-            <div>Loss Rate: <span className="text-emerald-700 font-bold">&lt; 0.4% / week</span></div>
+            <div>Capacity: <span className="text-slate-800">{isMr ? '१५० क्विंटल' : isHi ? '150 क्विंटल' : '150 Quintals'}</span></div>
+            <div>Holding Limit: <span className="text-slate-800">{isMr ? '६० दिवसांपर्यंत' : isHi ? '60 दिनों तक' : 'Up to 60 Days'}</span></div>
+            <div>Loss Rate: <span className="text-emerald-700 font-bold">{isMr ? '< ०.४% / आठवडा' : isHi ? '< 0.4% / सप्ताह' : '< 0.4% / week'}</span></div>
           </div>
           <span className="inline-block text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">
-            Zero Distress Selling
+            {isMr ? 'भावाची कोणतीही घाई नाही' : isHi ? 'मजबूरी में बिक्री नहीं' : 'Zero Distress Selling'}
           </span>
         </div>
 
@@ -138,20 +141,20 @@ export default function DigitalTwin() {
         <div className="ab-card p-5 border-t-4 border-t-purple-500 space-y-3">
           <div className="flex justify-between items-center">
             <span className="text-xs font-black uppercase text-purple-700 tracking-wider">
-              {isMr ? 'आर्थिक क्षमता' : 'Financial Index'}
+              {isMr ? 'आर्थिक क्षमता' : isHi ? 'वित्तीय होल्डिंग क्षमता' : 'Financial Index'}
             </span>
             <DollarSign className="w-5 h-5 text-purple-600" />
           </div>
           <div className="text-base font-black text-slate-800">
-            {isMr ? 'मजबूत आर्थिक क्षमता' : 'Strong Holding Power'}
+            {isMr ? 'मजबूत आर्थिक क्षमता' : isHi ? 'मजबूत होल्डिंग पावर' : 'Strong Holding Power'}
           </div>
           <div className="space-y-1 text-xs font-semibold text-slate-500">
             <div>KCC Limit: <span className="text-slate-800">₹1,50,000 (0% Int)</span></div>
-            <div>Distress Level: <span className="text-emerald-700 font-bold">Low (Can wait)</span></div>
+            <div>Distress Level: <span className="text-emerald-700 font-bold">{isMr ? 'कमी (थांबू शकता)' : isHi ? 'कम (रुक सकते हैं)' : 'Low (Can wait)'}</span></div>
             <div>Credit Health: <span className="text-slate-800">Score 780</span></div>
           </div>
           <span className="inline-block text-[10px] font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded">
-            Market Power High
+            {isMr ? 'उच्च बाजार सौदेबाजी' : isHi ? 'उच्च बाजार मोलभाव' : 'Market Power High'}
           </span>
         </div>
 
@@ -165,11 +168,11 @@ export default function DigitalTwin() {
               <Sliders className="w-4 h-4" /> Interactive Simulation Sandbox
             </span>
             <h2 className="text-2xl font-black text-slate-800 tracking-tight">
-              {isMr ? 'निर्णय सिमुलेशन: "आज विकू की चाळीत ठेवू?"' : '"Sell Today vs Hold in Chawl" Simulator'}
+              {isMr ? 'निर्णय सिमुलेशन: "आज विकू की चाळीत ठेवू?"' : isHi ? 'निर्णय सिमुलेशन: "आज बेचें या भंडारण में रखें?"' : '"Sell Today vs Hold in Chawl" Simulator'}
             </h2>
           </div>
           <span className="text-xs font-bold text-slate-500 bg-white px-3 py-1.5 rounded-xl border border-slate-200">
-            Lot: {lotQuantity} Qtl Unhali Onion
+            Lot: {lotQuantity} Qtl {isMr ? 'उन्हाळी कांदा' : isHi ? 'उन्हाली प्याज' : 'Unhali Onion'}
           </span>
         </div>
 
@@ -180,9 +183,11 @@ export default function DigitalTwin() {
           <div className="space-y-3 bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
             <div className="flex justify-between items-center">
               <label className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-                {isMr ? 'साठवणूक कालावधी' : 'Holding Duration'}
+                {isMr ? 'साठवणूक कालावधी' : isHi ? 'भंडारण अवधि' : 'Holding Duration'}
               </label>
-              <span className="text-lg font-black text-indigo-700">{holdingDays} Days</span>
+              <span className="text-lg font-black text-indigo-700">
+                {holdingDays} {isMr ? 'दिवस' : isHi ? 'दिन' : 'Days'}
+              </span>
             </div>
             <input 
               type="range"
@@ -193,17 +198,17 @@ export default function DigitalTwin() {
               className="w-full accent-indigo-600 h-2 bg-slate-200 rounded-lg cursor-pointer"
             />
             <div className="flex justify-between text-[10px] font-bold text-slate-400">
-              <span>0 (Today)</span>
-              <span>7 Days</span>
-              <span>14 Days</span>
-              <span>21 Days</span>
+              <span>0 ({isMr ? 'आज' : isHi ? 'आज' : 'Today'})</span>
+              <span>7 {isMr ? 'दिवस' : isHi ? 'दिन' : 'Days'}</span>
+              <span>14 {isMr ? 'दिवस' : isHi ? 'दिन' : 'Days'}</span>
+              <span>21 {isMr ? 'दिवस' : isHi ? 'दिन' : 'Days'}</span>
             </div>
           </div>
 
           {/* Toggle: Ventilated Chawl vs Open Barn */}
           <div className="space-y-3 bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
             <label className="text-xs font-bold text-slate-500 uppercase tracking-wider block">
-              {isMr ? 'साठवणूक पद्धत' : 'Storage Infrastructure'}
+              {isMr ? 'साठवणूक पद्धत' : isHi ? 'भंडारण पद्धति' : 'Storage Infrastructure'}
             </label>
             <div className="grid grid-cols-2 gap-2">
               <button
@@ -212,7 +217,7 @@ export default function DigitalTwin() {
                   hasChawl ? 'bg-emerald-600 text-white shadow-md' : 'bg-slate-100 text-slate-600'
                 }`}
               >
-                {isMr ? 'हवेशीर चाळ ✅' : 'Ventilated Chawl ✅'}
+                {isMr ? 'हवेशीर चाळ ✅' : isHi ? 'हवादार चाळ ✅' : 'Ventilated Chawl ✅'}
               </button>
               <button
                 onClick={() => setHasChawl(false)}
@@ -220,13 +225,13 @@ export default function DigitalTwin() {
                   !hasChawl ? 'bg-amber-600 text-white shadow-md' : 'bg-slate-100 text-slate-600'
                 }`}
               >
-                {isMr ? 'खुले शेड / गोणी' : 'Open Barn'}
+                {isMr ? 'खुले शेड / गोणी' : isHi ? 'खुला शेड / बोरी' : 'Open Barn'}
               </button>
             </div>
             <p className="text-[11px] text-slate-400 font-medium">
               {hasChawl 
-                ? 'Minimal curing loss (0.1%/day), preserves bulb hardness.' 
-                : 'Higher moisture rot & weight loss (0.6%/day).'
+                ? (isMr ? 'कमी घट (०.१%/दिवस), प्रत उत्तम राहते.' : isHi ? 'न्यूनतम वजन घट (0.1%/दिन), गुणवत्ता बरकरार।' : 'Minimal curing loss (0.1%/day), preserves bulb hardness.')
+                : (isMr ? 'ओलाव्यामुळे सड व वजनात जास्त घट (०.६%/दिवस).' : isHi ? 'नमी से सड़न व वजन में अधिक गिरावट (0.6%/दिन)।' : 'Higher moisture rot & weight loss (0.6%/day).')
               }
             </p>
           </div>
@@ -234,7 +239,7 @@ export default function DigitalTwin() {
           {/* Toggle: Liquidity Urgency */}
           <div className="space-y-3 bg-white p-5 rounded-2xl border border-slate-200 shadow-sm">
             <label className="text-xs font-bold text-slate-500 uppercase tracking-wider block">
-              {isMr ? 'तात्काळ पैशांची गरज' : 'Cash Liquidity Pressure'}
+              {isMr ? 'तात्काळ पैशांची गरज' : isHi ? 'नकदी की तात्कालिक जरूरत' : 'Cash Liquidity Pressure'}
             </label>
             <div className="grid grid-cols-2 gap-2">
               <button
@@ -243,7 +248,7 @@ export default function DigitalTwin() {
                   liquidityPressure === 'low' ? 'bg-slate-800 text-white shadow-md' : 'bg-slate-100 text-slate-600'
                 }`}
               >
-                {isMr ? 'शांत (थांबू शकतो)' : 'Low (Can Hold)'}
+                {isMr ? 'शांत (थांबू शकतो)' : isHi ? 'कम (रुक सकते हैं)' : 'Low (Can Hold)'}
               </button>
               <button
                 onClick={() => setLiquidityPressure('high')}
@@ -251,13 +256,13 @@ export default function DigitalTwin() {
                   liquidityPressure === 'high' ? 'bg-red-600 text-white shadow-md' : 'bg-slate-100 text-slate-600'
                 }`}
               >
-                {isMr ? 'तातडीने हवेत' : 'Urgent Need'}
+                {isMr ? 'तातडीने हवेत' : isHi ? 'तत्काल जरूरत' : 'Urgent Need'}
               </button>
             </div>
             <p className="text-[11px] text-slate-400 font-medium">
               {liquidityPressure === 'low' 
-                ? 'KCC credit active, zero forced distress selling.' 
-                : 'Recommends split pooled sale to secure immediate cash.'
+                ? (isMr ? 'KCC पत मर्यादा सक्रिय, भावाची घाई नाही.' : isHi ? 'केसीसी ऋण सीमा सक्रिय, मजबूरी में बेचने की जरूरत नहीं।' : 'KCC credit active, zero forced distress selling.')
+                : (isMr ? 'तात्काळ पैशांसाठी सामायिक वाहनाने काही माल विकण्याची शिफारस.' : isHi ? 'तात्कालिक नकदी हेतु साझा वाहन द्वारा आंशिक बिक्री की सलाह।' : 'Recommends split pooled sale to secure immediate cash.')
               }
             </p>
           </div>
@@ -270,7 +275,7 @@ export default function DigitalTwin() {
             
             <div>
               <span className="text-xs font-black uppercase text-indigo-300 tracking-wider block mb-1">
-                {isMr ? 'आजची तात्काळ विक्री' : 'Selling Today (0 Days)'}
+                {isMr ? 'आजची तात्काळ विक्री' : isHi ? 'आज की तात्कालिक बिक्री' : 'Selling Today (0 Days)'}
               </span>
               <div className="text-2xl sm:text-3xl font-black text-slate-300">
                 ₹{todayGross.toLocaleString()}
@@ -282,7 +287,7 @@ export default function DigitalTwin() {
 
             <div className="border-y md:border-y-0 md:border-x border-white/10 py-4 md:py-0 md:px-6 text-center">
               <span className="text-xs font-black uppercase text-emerald-400 tracking-wider block mb-1">
-                {isMr ? `${holdingDays} दिवस थांबल्यास फायदा` : `Gain After ${holdingDays} Days in Chawl`}
+                {isMr ? `${holdingDays} दिवस थांबल्यास फायदा` : isHi ? `${holdingDays} दिन रुकने पर अतिरिक्त लाभ` : `Gain After ${holdingDays} Days in Chawl`}
               </span>
               <div className="text-3xl sm:text-4xl font-black text-emerald-400">
                 {netGain >= 0 ? `+₹${netGain.toLocaleString()}` : `-₹${Math.abs(netGain).toLocaleString()}`}
@@ -294,14 +299,18 @@ export default function DigitalTwin() {
 
             <div className="text-left md:text-right">
               <span className="text-xs font-black uppercase text-amber-300 tracking-wider block mb-1">
-                {isMr ? 'AI डिजिटल सल्ला' : 'Twin Strategy'}
+                {isMr ? 'AI डिजिटल सल्ला' : isHi ? 'AI डिजिटल सलाह' : 'Twin Strategy'}
               </span>
               <div className="text-xl font-black text-white mb-2">
-                {netGain > 0 ? (isMr ? 'चाळीत ठेवा (WAIT & HOLD)' : 'HOLD IN CHAWL') : (isMr ? 'आजच विका (SELL TODAY)' : 'SELL TODAY')}
+                {netGain > 0 
+                  ? (isMr ? 'चाळीत ठेवा (WAIT & HOLD)' : isHi ? 'भंडारण में रखें (WAIT & HOLD)' : 'HOLD IN CHAWL') 
+                  : (isMr ? 'आजच विका (SELL TODAY)' : isHi ? 'आज ही बेचें (SELL TODAY)' : 'SELL TODAY')}
               </div>
               <p className="text-xs text-slate-300 leading-relaxed font-medium">
                 {isMr 
                   ? `तुमच्याकडे हवेशीर कांदा चाळ असल्याने ${holdingDays} दिवस थांबून विकल्यास तुम्हाला निव्वळ ₹${netGain.toLocaleString()} चा जास्तीचा नफा होईल.`
+                  : isHi
+                  ? `आपके पास हवादार प्याज चाळ होने के कारण ${holdingDays} दिन रुकने पर आपको कुल ₹${netGain.toLocaleString()} (+${Math.round((netGain/todayGross)*100)}%) का अतिरिक्त शुद्ध लाभ प्राप्त होगा।`
                   : `With your verified Kanda Chawl, waiting ${holdingDays} days produces a net gain of ₹${netGain.toLocaleString()} (+${Math.round((netGain/todayGross)*100)}%).`
                 }
               </p>
